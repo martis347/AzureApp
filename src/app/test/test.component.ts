@@ -25,9 +25,14 @@ export class TestComponent implements OnInit {
     var a = this.getHeroes();
 
     a.subscribe(
-      product => console.log(product),
-      error => console.log(error));
-
+      product => {
+		  console.log(product); 
+		  window.alert("Response from server: " + product.body);
+	  },
+      error => {
+		  console.log(error);
+		  window.alert("An error has occured");
+	  });
   }
 
   getHeroes(): Observable<any> {
