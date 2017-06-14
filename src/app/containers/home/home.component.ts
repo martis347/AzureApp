@@ -22,12 +22,12 @@ export class HomeComponent implements OnInit {
   }
 
   test(){
-    var a = this.getHeroes();
+    let a = this.getHeroes();
 
     a.subscribe(
       product => {
 		  console.log(product);
-		  window.alert("Response from server: " + product.body);
+		  window.alert("Response from server: " + product._body);
 	  },
       error => {
 		  console.log(error);
@@ -37,19 +37,5 @@ export class HomeComponent implements OnInit {
 
   getHeroes(): Observable<any> {
     return this._http.get("http://besmart1-api.azurewebsites.net/api/values");
-  }
-
-  private handleError (error: Response | any) {
-    // In a real world app, you might use a remote logging infrastructure
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
   }
 }

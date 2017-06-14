@@ -13,6 +13,7 @@ import {NavigationComponent} from "./navigation/navigation.component";
 import {GithubModule} from "./containers/github/github.module";
 import {HomeModule} from "./containers/home/home.module";
 import {MainModule} from "./containers/main/main.module";
+import {ServicesModule} from "./services/services.module";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {MainModule} from "./containers/main/main.module";
     GithubModule,
     HomeModule,
     MainModule,
+    ServicesModule,
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: '', component: HomeComponent },

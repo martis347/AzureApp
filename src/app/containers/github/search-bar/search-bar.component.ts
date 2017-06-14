@@ -1,4 +1,5 @@
-import { Component }  from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {GithubService} from "../../../services/api/github/github.service";
 
 @Component({
   selector: 'search-bar',
@@ -6,8 +7,11 @@ import { Component }  from '@angular/core';
   styleUrls: ['search-bar.component.css']
 })
 
-export class SearchBarComponent {
-  constructor() { }
+export class SearchBarComponent implements OnInit{
+  constructor(private githubService: GithubService) {
+  }
 
-
+  ngOnInit(): void {
+    console.log(this.githubService.test());
+  }
 }
