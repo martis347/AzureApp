@@ -6,13 +6,16 @@ import { RouterModule } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
-
-import {TestComponent} from "./test/test.component";
+import {HomeComponent} from "./containers/home/home.component";
+import {MainComponent} from "./containers/main/main.component";
+import {NavigationComponent} from "./navigation/navigation.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    HomeComponent,
+    MainComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -20,9 +23,10 @@ import {TestComponent} from "./test/test.component";
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: 'test', component: TestComponent },
-      { path: '', redirectTo: 'test', pathMatch: 'full' },
-      { path: '**', redirectTo: 'test', pathMatch: 'full' }
+      { path: 'home', component: HomeComponent },
+      { path: 'main', component: MainComponent },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]),
   ],
   providers: [],

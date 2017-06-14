@@ -8,11 +8,11 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
 @Component({
-  selector: 'test',
-  templateUrl: './test.component.html'
+  selector: 'home',
+  templateUrl: 'home.component.html'
 })
 
-export class TestComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   constructor(private _http: Http) { }
 
@@ -26,7 +26,7 @@ export class TestComponent implements OnInit {
 
     a.subscribe(
       product => {
-		  console.log(product); 
+		  console.log(product);
 		  window.alert("Response from server: " + product.body);
 	  },
       error => {
