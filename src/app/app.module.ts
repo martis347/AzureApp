@@ -8,13 +8,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
 import {HomeComponent} from "./containers/home/home.component";
 import {MainComponent} from "./containers/main/main.component";
+import {GithubComponent} from "./containers/github/github.component";
 import {NavigationComponent} from "./navigation/navigation.component";
+import {GithubModule} from "./containers/github/github.module";
+import {HomeModule} from "./containers/home/home.module";
+import {MainModule} from "./containers/main/main.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    MainComponent,
     NavigationComponent
   ],
   imports: [
@@ -22,10 +24,14 @@ import {NavigationComponent} from "./navigation/navigation.component";
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    GithubModule,
+    HomeModule,
+    MainModule,
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
+      { path: '', component: HomeComponent },
       { path: 'main', component: MainComponent },
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'github', component: GithubComponent },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]),
   ],

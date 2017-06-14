@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import {MdButtonModule, MdCheckboxModule} from '@angular/material';
+import {HomeComponent} from "./home.component";
 
 @NgModule({
-  imports: [MdButtonModule, MdCheckboxModule],
+  imports: [],
   declarations: [
-
+    HomeComponent
   ],
   providers: [
-  ]
+  ],
+  exports: [HomeComponent]
 })
-export class ProductModule {}
+export class HomeModule {}
