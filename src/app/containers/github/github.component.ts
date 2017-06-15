@@ -1,4 +1,4 @@
-import { Component }  from '@angular/core';
+import {Component}  from '@angular/core';
 
 @Component({
   selector: 'github',
@@ -6,7 +6,11 @@ import { Component }  from '@angular/core';
   styleUrls: ['github.component.css']
 })
 
-export class GithubComponent {
-  constructor() { }
+export class GithubComponent{
+  data: any;
 
+  displayResults(data: any): void{
+    console.log(data);
+    this.data = data;
+  }
 }

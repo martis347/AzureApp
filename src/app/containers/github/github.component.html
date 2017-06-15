@@ -1,5 +1,8 @@
 <div class="content">
   <header>Search for a Github user by it's username.</header>
   <br>
-  <search-bar ></search-bar>
+  <search-bar (onSearch)="displayResults($event)"></search-bar>
+  <div class="col-3" *ngIf="!!data">
+    <github-user-table [(user)]="data"></github-user-table>
+  </div>
 </div>
