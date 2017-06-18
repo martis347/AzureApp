@@ -1,12 +1,7 @@
-li > button {
-  width: 100%;
-  margin: 5px;
+.sidenav-content {
+  padding: -10px;
 }
 
-li {
-  list-style-type: none;
-}
-
-ul {
-  padding-left: 0;
+md-sidenav {
+  padding: 0;
 }

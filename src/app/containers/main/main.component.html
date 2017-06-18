@@ -1,56 +1,32 @@
 <md-sidenav-container [class.m2app-dark]="isDarkTheme">
 
-  <md-sidenav #sidenav mode="side" class="app-sidenav">
-    <nav>
-      <h3>Day of Week</h3>
-      <ul>
-        <li>
-          <button md-raised-button>Pirmadienis</button>
-        </li>
-        <li>
-          <button md-raised-button>Antradienis</button>
-        </li>
-        <li>
-          <button md-raised-button color="primary">Trečiadienis</button>
-        </li>
-        <li>
-          <button md-raised-button>Ketvirtadienis</button>
-        </li>
-        <li>
-          <button md-raised-button color="accent">Penktadienis</button>
-        </li>
-      </ul>
-    </nav>
-  </md-sidenav>
+    <md-sidenav #sidenav mode="push" class="app-sidenav">
+      <div class="sidenav-toolbar">
+        <md-toolbar color="primary">
+          <button class="app-icon-button">
+            <i class="material-icons app-toolbar-menu">explore</i>
+          </button>
 
-  <md-toolbar color="primary">
-    <button class="app-icon-button" (click)="sidenav.toggle()">
-      <i class="material-icons app-toolbar-menu">menu</i>
-    </button>
+          Devbridge Lunch
 
-    Angular Material2 Example App
+          <span class="app-toolbar-filler"></span>
+        </md-toolbar>
+      </div>
 
-    <span class="app-toolbar-filler"></span>
-    <button md-button (click)="isDarkTheme = !isDarkTheme">TOGGLE DARK THEME</button>
-  </md-toolbar>
+      <sidenav-content ></sidenav-content>
+    </md-sidenav>
 
-  <div class="app-content">
-    <md-card>
-      <md-checkbox>Unchecked</md-checkbox>
-      <md-checkbox [checked]="true">Checked</md-checkbox>
-      <md-checkbox [indeterminate]="true">Indeterminate</md-checkbox>
-      <md-checkbox [disabled]="true">Disabled</md-checkbox>
-    </md-card>
+    <!-- primary content -->
 
-    <md-card>
-      <h1>
-        This is the main container
-      </h1>
+  <!--<md-sidenav #sidenav mode="side" class="app-sidenav">
+    <md-nav-list>
+      <a md-list-item href="page1.html">Page 1</a>
+      <a md-list-item href="page2.html">Page 2</a>
+      <a md-list-item href="page3.html">Page 3</a>
+    </md-nav-list>
+  </md-sidenav>-->
 
-      <md-input-container>
-        <input mdInput placeholder="Favorite food" value="Sushi">
-      </md-input-container>
-    </md-card>
+  <toolbar [sidenav]="sidenav"> </toolbar>
 
-  </div>
+  <app-content></app-content>
 </md-sidenav-container>

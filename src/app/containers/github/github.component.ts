@@ -1,15 +1,15 @@
-import {Component}  from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'github',
+  selector: 'github-component',
   templateUrl: 'github.component.html',
   styleUrls: ['github.component.css']
 })
 
-export class GithubComponent{
+export class GithubComponent {
   data: any;
 
-  displayResults(data: any): void{
+  displayResults(data: any): void {
     console.log(data);
     this.data = data;
   }

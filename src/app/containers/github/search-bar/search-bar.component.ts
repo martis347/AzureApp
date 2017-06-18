@@ -1,5 +1,5 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {GithubService} from "../../../services/api/github/github.service";
+import {GithubService} from '../../../services/api/github/github.service';
 
 @Component({
   selector: 'search-bar',
@@ -7,18 +7,17 @@ import {GithubService} from "../../../services/api/github/github.service";
   styleUrls: ['search-bar.component.css']
 })
 
-export class SearchBarComponent implements OnInit{
+export class SearchBarComponent implements OnInit {
+  @Output() onSearch: EventEmitter <any> = new EventEmitter();
+  query: string;
+  isLoading: boolean;
+
   constructor(private githubService: GithubService) {
   }
-
-  @Output() onSearch: EventEmitter <any> = new EventEmitter();
 
   ngOnInit(): void {
     console.log(this.githubService.test());
   }
-
-  query: string;
-  isLoading: boolean;
 
   search(event): void {
     event.preventDefault();

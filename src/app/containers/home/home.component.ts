@@ -1,5 +1,5 @@
-import {Component, OnInit}  from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Component, OnInit} from '@angular/core';
+import {Http} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/add/operator/do';
@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
 @Component({
-  selector: 'home',
+  selector: 'home-component',
   templateUrl: 'home.component.html'
 })
 
@@ -23,18 +23,18 @@ export class HomeComponent implements OnInit {
   }
 
   test() {
-    let a = this.getHeroes();
+    const a = this.getHeroes();
 
     a.subscribe(product => {
       console.log(product);
-      window.alert("Response from server: " + product._body);
+      window.alert('Response from server: ' + product._body);
     }, error => {
       console.log(error);
-      window.alert("An error has occured");
+      window.alert('An error has occured');
     });
   }
 
   getHeroes(): Observable<any> {
-    return this._http.get("http://besmart1-api.azurewebsites.net/api/values");
+    return this._http.get('http://besmart1-api.azurewebsites.net/api/values');
   }
 }
