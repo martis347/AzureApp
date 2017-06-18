@@ -6,6 +6,7 @@ import {SidenavComponent} from './sidenav/sidenav.component';
 import {ToolbarComponent} from './toolbar/toolbar.component';
 import {ContentModule} from './content/content.module';
 import {CommonModule} from "@angular/common";
+import {MenuItemsComponent} from "./sidenav/menu-items/menu-items.component";
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import {CommonModule} from "@angular/common";
   declarations: [
     MainComponent,
     SidenavComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    MenuItemsComponent
   ],
   providers: [],
   exports: [

@@ -1,14 +1,14 @@
 
-<md-sidenav-container>
+<md-sidenav-container (swipeleft)="onSwipeLeft()">
   <toolbar [sidenav]="sidenav"> </toolbar>
 
     <md-sidenav #sidenav mode="push" class="app-sidenav">
 
 
-      <sidenav-content ></sidenav-content>
+      <sidenav-content></sidenav-content>
     </md-sidenav>
 
-  <app-content></app-content>
+  <app-content  ></app-content>
 </md-sidenav-container>
 
 <span class="app-action">

@@ -20,18 +20,4 @@
   </div>
 </div>
 
-<md-nav-list>
-  <div *ngIf="showingSettings;then settings_content else main_content"></div>
-</md-nav-list>
-
-<ng-template #main_content>
-  <a md-list-item href="page1.html">Pirmadienis</a>
-  <a md-list-item href="page2.html">Antradienis</a>
-  <a md-list-item href="page3.html">Trečiadienis</a>
-  <a md-list-item href="page3.html">Ketvirtadienis</a>
-  <a md-list-item href="page3.html">Penktadienis</a>
-</ng-template>
-<ng-template #settings_content>
-  <a md-list-item href="page1.html">Change Name</a>
-  <a md-list-item href="page2.html">Settings</a>
-</ng-template>
+<menu-items [showingSettings]="showingSettings"></menu-items>

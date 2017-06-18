@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import {ContentComponent} from "./content/content.component";
+import {MdSidenav} from "@angular/material";
+import {Hammer} from "hammerjs";
 
 @Component({
   selector: 'main-component',
@@ -7,6 +10,13 @@ import { Component } from '@angular/core';
 })
 
 export class MainComponent {
-  constructor() { }
+  @ViewChild(ContentComponent) appElement : ContentComponent;
+  @ViewChild(MdSidenav) sidenav : MdSidenav;
 
+  onSwipeLeft(){
+    this.sidenav.close();
+  }
+
+  constructor() {
+  }
 }
