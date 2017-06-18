@@ -1,9 +1,6 @@
-.sidenav-content {
-  padding: -10px;
-}
-
 md-sidenav {
   padding: 0;
+  width: 220px;
 }
 
 .check-circle {

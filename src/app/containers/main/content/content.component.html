@@ -1,5 +1,12 @@
 <div class="app-content">
   <md-card>
+    <button md-button>FLAT</button>
+    <button md-raised-button md-tooltip="This is a tooltip!">RAISED</button>
+    <button md-raised-button color="primary">PRIMARY RAISED</button>
+    <button md-raised-button color="accent">ACCENT RAISED</button>
+  </md-card>
+
+  <md-card>
     <md-checkbox>Unchecked</md-checkbox>
     <md-checkbox [checked]="true">Checked</md-checkbox>
     <md-checkbox [indeterminate]="true">Indeterminate</md-checkbox>
@@ -41,7 +48,7 @@
     </md-menu>
 
     <button class="app-icon-button" [mdMenuTriggerFor]="menu" aria-label="Open anchor menu">
-      <i class="material-icons check-circle">more_vert</i>
+      <i class="material-icons">more_vert</i>
     </button>
   </md-card>
 

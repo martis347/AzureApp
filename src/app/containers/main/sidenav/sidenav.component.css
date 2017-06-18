@@ -10,3 +10,41 @@ li {
 ul {
   padding-left: 0;
 }
+
+.sidenav-icon {
+  width: 45px;
+  padding-right: 10px;
+}
+
+.sidenav-background {
+  background: url('https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/sidenav background.jpg') no-repeat right bottom;
+  background-size: 400px 400px;
+  padding: 15px;
+  height: 100px;
+}
+
+.sidenav-background > h6 {
+  position: relative;
+  top: 9px;
+}
+
+.sidenav-background > img {
+  float: left;
+}
+
+.user-menu-icon {
+  width: 18px;
+  position: relative;
+}
+
+.settings-panel {
+  display:inline;
+}
+
+.settings-panel > span{
+  font-size: 14px;
+}
+
+.settings-panel > div {
+  display: inline;
+}

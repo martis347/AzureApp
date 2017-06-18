@@ -7,7 +7,13 @@ import {Component} from '@angular/core';
 })
 
 export class SidenavComponent {
+  showingSettings: boolean = false;
+  toggleDropdown(): void{
+    this.showingSettings = !this.showingSettings;
+  }
+
   constructor() {
   }
+
 
 }

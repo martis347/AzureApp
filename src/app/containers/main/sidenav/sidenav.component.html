@@ -1,7 +1,37 @@
+<div class="sidenav-toolbar">
+  <div class="sidenav-background">
+    <img src="https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/db.ico" class="sidenav-icon"/>
+    <h6>Devbridge Lunch</h6>
+    <br>
+
+    <div>
+      <div md-button class="app-icon-button" (click)="toggleDropdown()">
+        <div class="settings-panel">
+          <span><i>Martynas Kanapinskas</i></span>
+          <div *ngIf="showingSettings">
+            <img src="https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/arrow-down.png" class="user-menu-icon" />
+          </div>
+          <div *ngIf="!showingSettings">
+            <img src="https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/arrow-up.png" class="user-menu-icon" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <md-nav-list>
-    <a md-list-item href="page1.html">Pirmadienis</a>
-    <a md-list-item href="page2.html">Antradienis</a>
-    <a md-list-item href="page3.html">Trečiadienis</a>
-    <a md-list-item href="page3.html">Ketvirtadienis</a>
-    <a md-list-item href="page3.html">Penktadienis</a>
-  </md-nav-list>
+  <div *ngIf="showingSettings;then settings_content else main_content"></div>
+</md-nav-list>
+
+<ng-template #main_content>
+  <a md-list-item href="page1.html">Pirmadienis</a>
+  <a md-list-item href="page2.html">Antradienis</a>
+  <a md-list-item href="page3.html">Trečiadienis</a>
+  <a md-list-item href="page3.html">Ketvirtadienis</a>
+  <a md-list-item href="page3.html">Penktadienis</a>
+</ng-template>
+<ng-template #settings_content>
+  <a md-list-item href="page1.html">Change Name</a>
+  <a md-list-item href="page2.html">Settings</a>
+</ng-template>

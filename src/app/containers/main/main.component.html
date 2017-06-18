@@ -1,19 +1,9 @@
 
-<md-sidenav-container [class.m2app-dark]="isDarkTheme">
+<md-sidenav-container>
   <toolbar [sidenav]="sidenav"> </toolbar>
 
     <md-sidenav #sidenav mode="push" class="app-sidenav">
-      <div class="sidenav-toolbar">
-        <md-toolbar color="primary">
-          <button class="app-icon-button">
-            <i class="material-icons app-toolbar-menu">explore</i>
-          </button>
 
-          Devbridge Lunch
-
-          <span class="app-toolbar-filler"></span>
-        </md-toolbar>
-      </div>
 
       <sidenav-content ></sidenav-content>
     </md-sidenav>

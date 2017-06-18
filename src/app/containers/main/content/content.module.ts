@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {ContentComponent} from './content.component';
 import {
   MdCheckboxModule, MdCardModule, MdInputModule, MdProgressSpinnerModule,
-  MdProgressBarModule, MdListModule, MdMenuModule
+  MdProgressBarModule, MdListModule, MdMenuModule, MdButtonModule
 } from '@angular/material';
 import {CommonModule} from "@angular/common";
 
@@ -16,7 +16,8 @@ import {CommonModule} from "@angular/common";
     MdProgressBarModule,
     MdListModule,
     MdInputModule,
-    MdMenuModule
+    MdMenuModule,
+    MdButtonModule
   ],
   declarations: [
     ContentComponent
