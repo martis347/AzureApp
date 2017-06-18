@@ -13,7 +13,7 @@ import {ContentModule} from './content/content.module';
     MdToolbarModule,
     MdSidenavModule,
     ContentModule,
-    MdListModule
+    MdListModule,
   ],
   declarations: [
     MainComponent,

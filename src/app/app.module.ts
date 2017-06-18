@@ -31,7 +31,7 @@ import {ServicesModule} from './services/services.module';
     ServicesModule,
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
-      { path: '', component: HomeComponent },
+      { path: '', component: MainComponent },
       { path: 'main', component: MainComponent },
       { path: 'github', component: GithubComponent },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
