@@ -7,7 +7,8 @@ import 'rxjs/add/observable/throw';
 
 @Component({
   selector: 'main',
-  templateUrl: 'main.component.html'
+  templateUrl: 'main.component.html',
+  styleUrls: ['main.component.css']
 })
 
 export class MainComponent {
