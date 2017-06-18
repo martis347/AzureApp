@@ -1,4 +1,6 @@
+
 <md-sidenav-container [class.m2app-dark]="isDarkTheme">
+  <toolbar [sidenav]="sidenav"> </toolbar>
 
     <md-sidenav #sidenav mode="push" class="app-sidenav">
       <div class="sidenav-toolbar">
@@ -15,18 +17,6 @@
 
       <sidenav-content ></sidenav-content>
     </md-sidenav>
-
-    <!-- primary content -->
-
-  <!--<md-sidenav #sidenav mode="side" class="app-sidenav">
-    <md-nav-list>
-      <a md-list-item href="page1.html">Page 1</a>
-      <a md-list-item href="page2.html">Page 2</a>
-      <a md-list-item href="page3.html">Page 3</a>
-    </md-nav-list>
-  </md-sidenav>-->
-
-  <toolbar [sidenav]="sidenav"> </toolbar>
 
   <app-content></app-content>
 </md-sidenav-container>

@@ -15,4 +15,49 @@
       <input mdInput placeholder="Favorite food" value="Sushi">
     </md-input-container>
   </md-card>
+
+  <md-card>
+    <md-list class="app-list">
+      <md-list-item *ngFor="let food of foods">
+        <h3 md-line>{{food.name}}</h3>
+        <p md-line class="demo-secondary-text">{{food.rating}}</p>
+      </md-list-item>
+    </md-list>
+  </md-card>
+
+  <md-card>
+    <md-spinner class="app-spinner"></md-spinner>
+    <md-spinner color="accent" class="app-spinner"></md-spinner>
+  </md-card>
+
+  <md-card>
+    <label>
+      Indeterminate progress-bar
+      <md-progress-bar
+        class="app-progress"
+        mode="indeterminate"
+        aria-label="Indeterminate progress-bar example"></md-progress-bar>
+    </label>
+
+    <!--<label>
+      Determinate progress bar - {{progress}}%
+      <md-progress-bar
+          class="app-progress"
+          color="accent"
+          mode="determinate"
+          [value]="progress"
+          aria-label="Determinate progress-bar example"></md-progress-bar>
+    </label>-->
+  </md-card>
+
+  <md-card>
+    <md-tab-group>
+      <md-tab label="Earth">
+        <p>EARTH</p>
+      </md-tab>
+      <md-tab label="Fire">
+        <p>FIRE</p>
+      </md-tab>
+    </md-tab-group>
+  </md-card>
 </div>
