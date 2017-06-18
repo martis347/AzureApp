@@ -3,11 +3,7 @@
 </md-nav-list>
 
 <ng-template #main_content>
-  <a md-list-item href="page1.html">Pirmadienis</a>
-  <a md-list-item href="page2.html">Antradienis</a>
-  <a md-list-item href="page3.html">Trečiadienis</a>
-  <a md-list-item href="page3.html">Ketvirtadienis</a>
-  <a md-list-item href="page3.html">Penktadienis</a>
+  <a md-list-item  *ngFor="let day of days" (click)="onClick(day)">{{day.displayName}}</a>
 </ng-template>
 <ng-template #settings_content>
   <a md-list-item href="page1.html">Change Name</a>

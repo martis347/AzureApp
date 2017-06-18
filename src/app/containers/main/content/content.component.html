@@ -1,67 +1,84 @@
 <div class="app-content">
-  <md-card>
-    <button md-button>FLAT</button>
-    <button md-raised-button md-tooltip="This is a tooltip!">RAISED</button>
-    <button md-raised-button color="primary">PRIMARY RAISED</button>
-    <button md-raised-button color="accent">ACCENT RAISED</button>
+  <md-card *ngIf="currentDay != 'monday'">
+    <md-spinner class="app-spinner" *ngIf="showLoader"></md-spinner>
+    <div *ngIf="!showLoader">
+      <button md-button>FLAT</button>
+      <button md-raised-button md-tooltip="This is a tooltip!">RAISED</button>
+      <button md-raised-button color="primary">PRIMARY RAISED</button>
+      <button md-raised-button color="accent">ACCENT RAISED</button>
+    </div>
+
   </md-card>
 
-  <md-card>
-    <md-checkbox>Unchecked</md-checkbox>
-    <md-checkbox [checked]="true">Checked</md-checkbox>
-    <md-checkbox [indeterminate]="true">Indeterminate</md-checkbox>
-    <md-checkbox [disabled]="true">Disabled</md-checkbox>
+  <md-card *ngIf="currentDay != 'tuesday'">
+    <md-spinner class="app-spinner" *ngIf="showLoader"></md-spinner>
+    <div *ngIf="!showLoader">
+      <md-checkbox>Unchecked</md-checkbox>
+      <md-checkbox [checked]="true">Checked</md-checkbox>
+      <md-checkbox [indeterminate]="true">Indeterminate</md-checkbox>
+      <md-checkbox [disabled]="true">Disabled</md-checkbox>
+    </div>
+
   </md-card>
 
-  <md-card>
-    <h1>
-      This is the main container
-    </h1>
+  <md-card *ngIf="currentDay != 'wednesday'">
+    <md-spinner class="app-spinner" *ngIf="showLoader"></md-spinner>
+    <div *ngIf="!showLoader">
+      <h1>
+        This is the main container
+      </h1>
 
-    <md-input-container>
-      <input mdInput placeholder="Favorite food" value="Sushi">
-    </md-input-container>
-  </md-card>
+      <md-input-container>
+        <input mdInput placeholder="Favorite food" value="Sushi">
+      </md-input-container>
+    </div>
 
-
-  <md-card>
-    <md-spinner class="app-spinner"></md-spinner>
-    <md-spinner color="accent" class="app-spinner"></md-spinner>
-  </md-card>
-
-  <md-card>
-    <label>
-      Indeterminate progress-bar
-      <md-progress-bar
-        class="app-progress"
-        mode="indeterminate"
-        aria-label="Indeterminate progress-bar example"></md-progress-bar>
-    </label>
-  </md-card>
-
-  <md-card>
-    <md-menu #menu="mdMenu">
-      <button md-menu-item>Item1</button>
-      <button md-menu-item>Item2</button>
-      <button md-menu-item>Item3</button>
-      <button md-menu-item>Item4</button>
-    </md-menu>
-
-    <button class="app-icon-button" [mdMenuTriggerFor]="menu" aria-label="Open anchor menu">
-      <i class="material-icons">more_vert</i>
-    </button>
   </md-card>
 
 
+  <md-card *ngIf="currentDay != 'thursday'">
+    <md-spinner class="app-spinner" *ngIf="showLoader"></md-spinner>
+    <div *ngIf="!showLoader">
+      <md-tab-group>
+        <md-tab label="Earth">
+          <p>EARTH</p>
+        </md-tab>
+        <md-tab label="Fire">
+          <p>FIRE</p>
+        </md-tab>
+      </md-tab-group>
+    </div>
+
+  </md-card>
 
   <md-card>
-    <md-tab-group>
-      <md-tab label="Earth">
-        <p>EARTH</p>
-      </md-tab>
-      <md-tab label="Fire">
-        <p>FIRE</p>
-      </md-tab>
-    </md-tab-group>
+    <md-spinner class="app-spinner" *ngIf="showLoader"></md-spinner>
+    <div *ngIf="!showLoader">
+      <label>
+        Indeterminate progress-bar
+        <md-progress-bar
+          class="app-progress"
+          mode="indeterminate"
+          aria-label="Indeterminate progress-bar example"></md-progress-bar>
+      </label>
+    </div>
+
+  </md-card>
+
+  <md-card *ngIf="currentDay != 'friday'">
+    <md-spinner class="app-spinner" *ngIf="showLoader"></md-spinner>
+    <div *ngIf="!showLoader">
+      <md-menu #menu="mdMenu">
+        <button md-menu-item>Item1</button>
+        <button md-menu-item>Item2</button>
+        <button md-menu-item>Item3</button>
+        <button md-menu-item>Item4</button>
+      </md-menu>
+
+      <button class="app-icon-button" [mdMenuTriggerFor]="menu" aria-label="Open anchor menu">
+        <i class="material-icons">more_vert</i>
+      </button>
+    </div>
+
   </md-card>
 </div>

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'sidenav-content',
@@ -7,7 +7,14 @@ import {Component} from '@angular/core';
 })
 
 export class SidenavComponent {
+  @Output() onDayClick: EventEmitter<Object> = new EventEmitter();
+
+  onDayClickEvent(event): void {
+    this.onDayClick.emit(event);
+  }
+
   showingSettings: boolean = false;
+
   toggleDropdown(): void{
     this.showingSettings = !this.showingSettings;
   }

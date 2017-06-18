@@ -5,10 +5,10 @@
     <md-sidenav #sidenav mode="push" class="app-sidenav">
 
 
-      <sidenav-content></sidenav-content>
+      <sidenav-content (onDayClick)="onDayClick($event)"></sidenav-content>
     </md-sidenav>
 
-  <app-content  ></app-content>
+  <app-content [currentDay]="selectedDay"></app-content>
 </md-sidenav-container>
 
 <span class="app-action">

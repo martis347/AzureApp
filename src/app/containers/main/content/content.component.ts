@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-content',
@@ -7,6 +7,17 @@ import { Component } from '@angular/core';
 })
 
 export class ContentComponent {
+  @Input() currentDay: Object;
+  showLoader: boolean = false;
+
+  ngOnChanges(changes: any){
+    if(changes.currentDay.currentValue){
+      this.currentDay = changes.currentDay.currentValue.id;
+      this.showLoader = true;
+    }
+
+    setTimeout(() => this.showLoader = false, 1200)
+  }
   constructor() { }
 
 }

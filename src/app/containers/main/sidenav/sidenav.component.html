@@ -4,20 +4,18 @@
     <h6>Devbridge Lunch</h6>
     <br>
 
-    <div>
-      <div md-button class="app-icon-button" (click)="toggleDropdown()">
-        <div class="settings-panel">
-          <span><i>Martynas Kanapinskas</i></span>
-          <div *ngIf="showingSettings">
-            <img src="https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/arrow-down.png" class="user-menu-icon" />
-          </div>
-          <div *ngIf="!showingSettings">
-            <img src="https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/arrow-up.png" class="user-menu-icon" />
-          </div>
-        </div>
+    <div md-raised-button class="app-icon-button settings-panel" (click)="toggleDropdown()">
+      <span><i>Martynas Kanapinskas</i></span>
+      <div *ngIf="showingSettings">
+        <img src="https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/arrow-down.png"
+             class="user-menu-icon"/>
+      </div>
+      <div *ngIf="!showingSettings">
+        <img src="https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/arrow-up.png"
+             class="user-menu-icon"/>
       </div>
     </div>
   </div>
 </div>
 
-<menu-items [showingSettings]="showingSettings"></menu-items>
+<menu-items [showingSettings]="showingSettings" (onDayClick)="onDayClickEvent($event)"></menu-items>

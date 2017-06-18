@@ -12,10 +12,15 @@ import {Hammer} from "hammerjs";
 export class MainComponent {
   @ViewChild(ContentComponent) appElement : ContentComponent;
   @ViewChild(MdSidenav) sidenav : MdSidenav;
+  onDayClick(newDay): void {
+    this.selectedDay = newDay;
+  }
 
   onSwipeLeft(){
     this.sidenav.close();
   }
+
+  selectedDay;
 
   constructor() {
   }
