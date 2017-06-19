@@ -1,15 +1,4 @@
-
-<md-sidenav-container (swipeleft)="onSwipeLeft()">
-  <toolbar [sidenav]="sidenav"> </toolbar>
-
-    <md-sidenav #sidenav mode="push" class="app-sidenav">
-
-
-      <sidenav-content (onDayClick)="onDayClick($event)"></sidenav-content>
-    </md-sidenav>
-
-  <app-content [currentDay]="selectedDay"></app-content>
-</md-sidenav-container>
+<app-content [currentDay]="selectedDay"></app-content>
 
 <span class="app-action">
   <button md-fab><i class="material-icons app-toolbar-menu check-circle">check circle</i></button>

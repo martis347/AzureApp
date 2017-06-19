@@ -1,0 +1,7 @@
+.mdl-step.is-active {
+  height: 200px;
+}
+
+.mdl-step.is-active:first-child {
+  height: 140px;
+}

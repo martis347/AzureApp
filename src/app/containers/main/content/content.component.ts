@@ -1,4 +1,5 @@
 import {Component, Input, ViewChild} from '@angular/core';
+import {UsersService} from "../../../services/api/users.service";
 
 @Component({
   selector: 'app-content',
@@ -18,6 +19,8 @@ export class ContentComponent {
 
     setTimeout(() => this.showLoader = false, 1200)
   }
-  constructor() { }
+  constructor(usersService: UsersService) { }
+
+  
 
 }
