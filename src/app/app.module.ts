@@ -45,8 +45,9 @@ import {LoginGuard} from "./login-guard";
     ServicesModule,
     RouterModule.forRoot([
       { path: 'setup', component: StepperComponent, canActivate: [LoginGuard] },
-      { path: '', component: MainComponent, canActivate: [MainGuard]},
+      { path: 'lunch/:day', component: MainComponent, canActivate: [MainGuard]},
       { path: 'github', component: GithubComponent },
+      { path: '', redirectTo: 'setup', pathMatch: 'full' },
       { path: '**', redirectTo: '', pathMatch: 'full' }
     ]),
   ],

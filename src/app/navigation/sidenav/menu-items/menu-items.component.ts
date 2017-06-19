@@ -1,4 +1,5 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Router, ActivatedRoute, Params} from "@angular/router";
 
 @Component({
   selector: 'menu-items',
@@ -8,7 +9,6 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 export class MenuItemsComponent {
   @Input() showingSettings: boolean;
-  @Output() onDayClick: EventEmitter<string> = new EventEmitter();
 
   days: Object[] = [
     {'id': 'monday', 'displayName': 'Pirmadienis'},
@@ -19,10 +19,17 @@ export class MenuItemsComponent {
   ];
 
   onClick(day): void {
-    this.onDayClick.emit(day);
+    this.router.navigate(['/lunch', day.id]);
   }
 
-  constructor() {
+  ngOnInit(){
+    this.activatedRoute.params.subscribe((params: Params) => {
+      let day = params['day'];
+      console.log(day);
+    });
+  }
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
 
   }
 }

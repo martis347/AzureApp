@@ -12,7 +12,7 @@ export class LoginGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/lunch', 'monday']);
     return false;
   }
 }

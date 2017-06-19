@@ -1,4 +1,4 @@
-import {Component, AfterViewChecked, ViewChild} from '@angular/core';
+import {Component, AfterViewChecked, ViewChild, Input} from '@angular/core';
 import {MdSidenav} from "@angular/material";
 declare const componentHandler: any;
 
@@ -19,5 +19,17 @@ export class AppComponent implements AfterViewChecked {
 
   onSwipeLeft(){
     this.sidenav.close();
+  }
+
+  @Input() currentDay: Object;
+  showLoader: boolean = false;
+
+  ngOnChanges(changes: any){
+    if(changes.currentDay.currentValue){
+      this.currentDay = changes.currentDay.currentValue.id;
+      this.showLoader = true;
+    }
+
+    setTimeout(() => this.showLoader = false, 1200)
   }
 }

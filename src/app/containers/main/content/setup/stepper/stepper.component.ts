@@ -50,7 +50,7 @@ export class StepperComponent {
   onDone(){
     this.stepper.nativeElement.MaterialStepper.next();
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/lunch', 'monday']);
   }
 
   onBack(){
