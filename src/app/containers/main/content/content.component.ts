@@ -17,13 +17,13 @@ export class ContentComponent {
   categories: string[];
   displayedCategories: string[];
   green: any[] = [
-    {name: 'RAUGINTŲ KOPŪSTŲ SRIUBA', price: '1.00'},
-    {name: 'BULVIŲ PLOKŠTAINIS', price: '2.40'},
-    {name: 'KIAULIENOS GULIAŠAS', price: '2.70'},
-    {name: 'Sultinys su kibinu', price: '1.90'},
-    {name: 'Sultinys', price: '1.00'},
-    {name: 'Varškės spurga', price: '0.40'},
-    {name: 'Silkė su karšta bulve', price: '2.00'}
+    {name: 'RAUGINTŲ KOPŪSTŲ SRIUBA', price: '1.00', dishType: 'side'},
+    {name: 'BULVIŲ PLOKŠTAINIS', price: '2.40', dishType: 'main'},
+    {name: 'KIAULIENOS GULIAŠAS', price: '2.70', dishType: 'main'},
+    {name: 'Sultinys su kibinu', price: '1.90', dishType: 'main'},
+    {name: 'Sultinys', price: '1.00', dishType: 'side'},
+    {name: 'Varškės spurga', price: '0.40', dishType: 'side'},
+    {name: 'Silkė su karšta bulve', price: '2.00', dishType: 'main'}
   ];
 
   constructor(private activatedRoute: ActivatedRoute) {
@@ -35,7 +35,7 @@ export class ContentComponent {
     });
 
     this.categories = this.red.map(item => {return item.category}).filter(this.onlyUnique);
-    this.displayedCategories = [this.categories[0]]
+    this.displayedCategories = [this.categories[0], 'zalieji']
   }
 
   private onlyUnique(value, index, self) {
@@ -55,9 +55,15 @@ export class ContentComponent {
   }
 
   getItemImage(item){
-    return item.dishType === 'side' ?
-      'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/side-dish.png' :
-      'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/main-dish.png';
+    let result;
+    if(item.dishType === 'side'){
+      result = 'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/side-dish.png';
+    } else if(item.dishType === 'main'){
+      result = 'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/main-dish.png';
+    } else {
+      result = 'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/combined-dish.png';
+    }
+    return result;
   }
 
   red: any[] = [{

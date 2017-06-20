@@ -16,23 +16,21 @@
       <md-card-subtitle>a.k.a. Žalieji</md-card-subtitle>
     </md-card-header>
     <md-card-content>
-      <a md-list-item *ngFor="let category of categories">
-          <md-slide-toggle
-              class="example-margin"
-              (change)="onSlide($event, category)"
-              [checked]="displayedCategories.indexOf(category) !== -1"
-              color="primary">
-              {{category}}
-          </md-slide-toggle>
-          <md-nav-list dense *ngIf="displayedCategories.indexOf(category) !== -1">
-          <a md-list-item *ngFor="let item of redItemsByCategory(category)">
-            <img md-list-avatar [src]="getItemImage(item)">
-            <span md-line>{{ item.name }}</span>
-            <span md-line class="demo-secondary-text"> {{ item.price }}€ </span>
-          </a>
-          </md-nav-list>
+      <a md-list-item >
+        <md-slide-toggle
+          class="example-margin"
+          (change)="onSlide($event, 'zalieji')"
+          [checked]="displayedCategories.indexOf('zalieji') !== -1"
+          color="primary">
+        </md-slide-toggle>
+      </a>
+      <md-nav-list dense *ngIf="displayedCategories.indexOf('zalieji') !== -1">
+        <a md-list-item *ngFor="let item of green">
+          <img md-list-avatar [src]="getItemImage(item)">
+          <span md-line>{{ item.name }}</span>
+          <span md-line class="demo-secondary-text"> {{ item.price }}€ </span>
         </a>
-
+      </md-nav-list>
     </md-card-content>
   </md-card>
 
@@ -42,12 +40,23 @@
       <md-card-subtitle>a.k.a. Raudonieji</md-card-subtitle>
     </md-card-header>
     <md-card-content>
-      <md-nav-list dense>
-        <a md-list-item *ngFor="let link of red">
-          <span md-line>{{ link.name }}</span>
-          <span md-line class="demo-secondary-text"> {{ link.price }}€ </span>
-        </a>
-      </md-nav-list>
+      <a md-list-item *ngFor="let category of categories">
+        <md-slide-toggle
+          class="example-margin"
+          (change)="onSlide($event, category)"
+          [checked]="displayedCategories.indexOf(category) !== -1"
+          color="primary">
+          {{category}}
+        </md-slide-toggle>
+        <md-nav-list dense *ngIf="displayedCategories.indexOf(category) !== -1">
+          <a md-list-item *ngFor="let item of redItemsByCategory(category)">
+            <img md-list-avatar [src]="getItemImage(item)">
+            <span md-line>{{ item.name }}</span>
+            <span md-line class="demo-secondary-text"> {{ item.price }}€ </span>
+          </a>
+        </md-nav-list>
+      </a>
+
     </md-card-content>
   </md-card>
 <!--
