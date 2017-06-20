@@ -1,4 +1,4 @@
-import {Component, ViewChild, ElementRef, NgZone} from '@angular/core';
+import {Component, ViewChild, ElementRef, NgZone, OnInit} from '@angular/core';
 import {Http} from "@angular/http";
 import {Observable} from "rxjs";
 import {FormControl} from "@angular/forms";
@@ -12,7 +12,7 @@ declare const gapi: any;
   styleUrls: ['stepper.component.css']
 })
 
-export class StepperComponent {
+export class StepperComponent implements OnInit{
   @ViewChild('stepper') stepper: ElementRef;
   googleProfile;
 
@@ -58,8 +58,6 @@ export class StepperComponent {
   }
 
   onSignIn(googleUser){
-
-
     this.googleProfile = googleUser;
 
     if(googleUser.getGrantedScopes().indexOf('spreadsheets.readonly') === -1){
@@ -76,11 +74,6 @@ export class StepperComponent {
     }
 
     this.stepper.nativeElement.MaterialStepper.next();
-
-    /*let a = this._http.get('https://content-sheets.googleapis.com/v4/spreadsheets/1UdJ_YVe1YD2PYUv7FRwSOAHHMImk13SVNJu8US8tFk8?includeGridData=false');
-    a.subscribe(data => {
-      console.log(data);
-    });*/
   }
 
   options = [
