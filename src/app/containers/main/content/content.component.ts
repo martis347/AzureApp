@@ -1,5 +1,6 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {SelectedChipsComponent} from "./selected-chips/selected-chips.component";
 
 @Component({
   selector: 'app-content',
@@ -8,11 +9,13 @@ import {ActivatedRoute} from "@angular/router";
 })
 
 export class ContentComponent {
-  @ViewChild('chip') chip: ElementRef;
+  @ViewChild('chips') chips: SelectedChipsComponent;
   currentDay: string = 'monday';
   showLoader: boolean = false;
   categories: string[];
   displayedCategories: string[];
+  price: number = 0;
+
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(params => {
@@ -26,20 +29,12 @@ export class ContentComponent {
     this.displayedCategories = [this.categories[0], 'zalieji']
   }
 
-  onClick(chip){
-    chip.selected = !chip.selected;
-  }
-
-  removeChip(event){
-    event.target.parentElement.remove();
+  onPriceChange(newPrice){
+    this.price = newPrice;
   }
 
   private onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
-  }
-
-  redItemsByCategory(category){
-    return this.red.filter(item => {return item.category === category});
   }
 
   green: any[] = [

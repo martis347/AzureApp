@@ -1,10 +1,4 @@
-md-chip {
-  max-width: 200px;
-}
 
-md-chip > md-icon {
-  cursor: pointer;
-}
 
 
 .mat-list, .mat-nav-list {

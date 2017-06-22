@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, AfterViewChecked} from '@angular/core';
+import {Component, Input, OnInit, AfterViewChecked, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'items-list',
@@ -8,11 +8,14 @@ import {Component, Input, OnInit, AfterViewChecked} from '@angular/core';
 
 export class ItemsListComponent implements OnInit{
   @Input() public items: any[] = [];
+  @Output() public onSelect: EventEmitter<any> = new EventEmitter();
 
   isCategorized: boolean;
 
   categories: string[];
   displayedCategories: string[];
+  subItems: any[] = [];
+  selectedItem: any;
 
   getItemImage(item){
     let result;
@@ -42,6 +45,28 @@ export class ItemsListComponent implements OnInit{
     } else {
       this.displayedCategories.splice(this.displayedCategories.indexOf(item), 1);
     }
+  }
+
+  onItemClick(item) {
+    this.subItems = item.side;
+    if(item.dishType !== 'combined'){
+      this.onSelect.emit(item);
+    }
+    else if(this.subItems && this.subItems.length > 1){
+      this.selectedItem = item;
+    } else {
+      this.onSelect.emit(Object.assign({}, item, {
+        side: this.subItems ? this.subItems[0] : undefined,
+        main: item.main ? item.main[0] : undefined
+      }));
+    }
+  }
+
+  onSubItemClick(subitem) {
+    this.onSelect.emit(Object.assign({}, this.selectedItem, {
+      side: subitem,
+      main: this.selectedItem.main[0]
+    }));
   }
 
   private onlyUnique(value, index, self) {

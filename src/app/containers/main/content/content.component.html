@@ -2,12 +2,9 @@
   <md-card>
     <md-card-header>
       <md-card-title>Selected Dishes</md-card-title>
-      <md-card-subtitle>Total Price: 4.75€</md-card-subtitle>
+      <md-card-subtitle>Total Price: {{price}}€</md-card-subtitle>
     </md-card-header>
-    <md-chip-list>
-      <md-chip selected="true" color="accent">Šaltibarščiai <md-icon (click)="removeChip($event)">✖</md-icon></md-chip>
-      <md-chip selected="true" color="primary">Cepelinai <md-icon (click)="removeChip($event)">✖</md-icon></md-chip>
-    </md-chip-list>
+    <selected-chips #chips (price)="onPriceChange($event)"></selected-chips>
   </md-card>
 
   <md-card class="items-card">
@@ -16,7 +13,7 @@
       <md-card-subtitle>a.k.a. Raudonieji</md-card-subtitle>
     </md-card-header>
     <md-card-content>
-      <items-list [items]="red"></items-list>
+      <items-list [items]="red" (onSelect)="chips.modifyItems($event)"></items-list>
     </md-card-content>
   </md-card>
 

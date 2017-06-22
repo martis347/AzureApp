@@ -9,6 +9,7 @@ import {CommonModule} from "@angular/common";
 import {StepperComponent} from "./setup/stepper/stepper.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ItemsListComponent} from "./items-list/items-list.component";
+import {SelectedChipsComponent} from "./selected-chips/selected-chips.component";
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import {ItemsListComponent} from "./items-list/items-list.component";
   declarations: [
     ContentComponent,
     StepperComponent,
-    ItemsListComponent
+    ItemsListComponent,
+    SelectedChipsComponent
   ],
   providers: [],
   exports: [
