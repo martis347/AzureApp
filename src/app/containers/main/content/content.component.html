@@ -10,17 +10,7 @@
     </md-chip-list>
   </md-card>
 
-  <md-card>
-    <md-card-header>
-      <md-card-title>www.pietaukskaniai.lt</md-card-title>
-      <md-card-subtitle>a.k.a. Žalieji</md-card-subtitle>
-    </md-card-header>
-    <md-card-content>
-     <!-- <items-list></items-list>-->
-    </md-card-content>
-  </md-card>
-
-  <md-card>
+  <md-card class="items-card">
     <md-card-header>
       <md-card-title>Punto Jazz</md-card-title>
       <md-card-subtitle>a.k.a. Raudonieji</md-card-subtitle>
@@ -29,6 +19,20 @@
       <items-list [items]="red"></items-list>
     </md-card-content>
   </md-card>
+
+  <md-card class="items-card">
+    <md-card-header>
+      <md-card-title>www.pietaukskaniai.lt</md-card-title>
+      <md-card-subtitle>a.k.a. Žalieji</md-card-subtitle>
+    </md-card-header>
+    <md-card-content>
+      <items-list [items]="green"></items-list>
+    </md-card-content>
+  </md-card>
+
+
+
+
 <!--
   <md-card *ngIf="currentDay != 'monday'">
     <md-spinner class="app-spinner" *ngIf="showLoader"></md-spinner>

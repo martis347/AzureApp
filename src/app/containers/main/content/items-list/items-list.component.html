@@ -1,17 +1,19 @@
 <div *ngFor="let category of categories">
   <md-nav-list dense>
-    <a md-list-item>
-    <span md-line (click)="onToggle()">
+    <a md-list-item (click)="onToggle(category)">
+    <span md-line >
       <span class="items-list-text">
         {{category}}
       </span>
       <img [src]=getDropdownImage(category) class="items-list-arrow"/>
     </span>
     </a>
-    <a md-list-item *ngFor="let item of itemsByCategory(category)">
-      <img md-list-avatar [src]="getItemImage(item)">
-      <span md-line>{{ item.name }}</span>
-      <span md-line class="demo-secondary-text"> {{ item.price }}€ </span>
-    </a>
+    <div *ngIf="displayedCategories.indexOf(category) !== -1">
+      <a md-list-item *ngFor="let item of itemsByCategory(category)">
+        <img md-list-avatar [src]="getItemImage(item)">
+        <span md-line>{{ item.name }}</span>
+        <span md-line class="demo-secondary-text"> {{ item.price }}€ </span>
+      </a>
+    </div>
   </md-nav-list>
 </div>

@@ -6,16 +6,8 @@ import {Component, Input, OnInit, AfterViewChecked} from '@angular/core';
   styleUrls: ['items-list.component.css']
 })
 
-export class ItemsListComponent implements AfterViewChecked {
+export class ItemsListComponent implements OnInit{
   @Input() public items: any[] = [];
-
-  ngAfterViewChecked(): void {
-    this.isCategorized = !!this.items[0].category;
-    if(this.isCategorized){
-      this.categories = this.items.map(item => {return item.category}).filter(this.onlyUnique);
-      this.displayedCategories = [this.categories[0], 'zalieji']
-    }
-  }
 
   isCategorized: boolean;
 
@@ -37,15 +29,15 @@ export class ItemsListComponent implements AfterViewChecked {
   getDropdownImage(category){
     let result;
     if(this.displayedCategories.indexOf(category) !== -1){
-      result = 'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/arrow-down2.png';
-    } else {
       result = 'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/arrow-up2.png';
+    } else {
+      result = 'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/arrow-down2.png';
     }
     return result;
   }
 
-  onToggle(event, item){
-    if(event.checked){
+  onToggle(item){
+    if(this.displayedCategories.indexOf(item) == -1){
       this.displayedCategories.push(item);
     } else {
       this.displayedCategories.splice(this.displayedCategories.indexOf(item), 1);
@@ -57,11 +49,26 @@ export class ItemsListComponent implements AfterViewChecked {
   }
 
   itemsByCategory(category){
-    return this.items.filter(item => {return item.category === category});
+    let result;
+    if(this.isCategorized){
+      result = this.items.filter(item => {return item.category === category});
+    } else {
+      result = this.items;
+    }
+
+
+    return result;
   }
 
   ngOnInit(){
-
+    this.isCategorized = !!this.items[0].category;
+    if(this.isCategorized){
+      this.categories = this.items.map(item => {return item.category}).filter(this.onlyUnique);
+      this.displayedCategories = [this.categories[0]]
+    } else {
+      this.categories = ['Žalieji'];
+      this.displayedCategories = [this.categories[0]]
+    }
   }
 
   constructor(){

@@ -1,5 +1,8 @@
 .items-list-arrow {
   width: 13px;
+  position: absolute;
+  right: 8px;
+  top: 15px;
 }
 .items-list-text {
   font-family: 'Roboto', sans-serif;
