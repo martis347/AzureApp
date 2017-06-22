@@ -20,16 +20,4 @@ export class AppComponent implements AfterViewChecked {
   onSwipeLeft(){
     this.sidenav.close();
   }
-
-  @Input() currentDay: Object;
-  showLoader: boolean = false;
-
-  ngOnChanges(changes: any){
-    if(changes.currentDay.currentValue){
-      this.currentDay = changes.currentDay.currentValue.id;
-      this.showLoader = true;
-    }
-
-    setTimeout(() => this.showLoader = false, 1200)
-  }
 }

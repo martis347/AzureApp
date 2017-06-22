@@ -1,6 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {filter} from "rxjs/operator/filter";
 
 @Component({
   selector: 'app-content',
@@ -9,22 +8,11 @@ import {filter} from "rxjs/operator/filter";
 })
 
 export class ContentComponent {
-
-
   @ViewChild('chip') chip: ElementRef;
   currentDay: string = 'monday';
   showLoader: boolean = false;
   categories: string[];
   displayedCategories: string[];
-  green: any[] = [
-    {name: 'RAUGINTŲ KOPŪSTŲ SRIUBA', price: '1.00', dishType: 'side'},
-    {name: 'BULVIŲ PLOKŠTAINIS', price: '2.40', dishType: 'main'},
-    {name: 'KIAULIENOS GULIAŠAS', price: '2.70', dishType: 'main'},
-    {name: 'Sultinys su kibinu', price: '1.90', dishType: 'main'},
-    {name: 'Sultinys', price: '1.00', dishType: 'side'},
-    {name: 'Varškės spurga', price: '0.40', dishType: 'side'},
-    {name: 'Silkė su karšta bulve', price: '2.00', dishType: 'main'}
-  ];
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(params => {
@@ -38,33 +26,31 @@ export class ContentComponent {
     this.displayedCategories = [this.categories[0], 'zalieji']
   }
 
-  private onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
+  onClick(chip){
+    chip.selected = !chip.selected;
   }
 
-  onSlide(event, item){
-    if(event.checked){
-      this.displayedCategories.push(item);
-    } else {
-      this.displayedCategories.splice(this.displayedCategories.indexOf(item), 1);
-    }
+  removeChip(event){
+    event.target.parentElement.remove();
+  }
+
+  private onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
   }
 
   redItemsByCategory(category){
     return this.red.filter(item => {return item.category === category});
   }
 
-  getItemImage(item){
-    let result;
-    if(item.dishType === 'side'){
-      result = 'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/side-dish.png';
-    } else if(item.dishType === 'main'){
-      result = 'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/main-dish.png';
-    } else {
-      result = 'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/combined-dish.png';
-    }
-    return result;
-  }
+  green: any[] = [
+    {name: 'RAUGINTŲ KOPŪSTŲ SRIUBA', price: '1.00', dishType: 'side'},
+    {name: 'BULVIŲ PLOKŠTAINIS', price: '2.40', dishType: 'main'},
+    {name: 'KIAULIENOS GULIAŠAS', price: '2.70', dishType: 'main'},
+    {name: 'Sultinys su kibinu', price: '1.90', dishType: 'main'},
+    {name: 'Sultinys', price: '1.00', dishType: 'side'},
+    {name: 'Varškės spurga', price: '0.40', dishType: 'side'},
+    {name: 'Silkė su karšta bulve', price: '2.00', dishType: 'main'}
+  ];
 
   red: any[] = [{
     name: 'Burokėlių',
@@ -215,16 +201,5 @@ export class ContentComponent {
     dishType: 'main'
   }
   ]
-
-  thirdLine: boolean = false;
-  infoClicked: boolean = false;
-
-  onClick(chip){
-    chip.selected = !chip.selected;
-  }
-
-  removeChip(event){
-    event.target.parentElement.remove();
-  }
 
 }

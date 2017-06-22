@@ -8,6 +8,7 @@ import {
 import {CommonModule} from "@angular/common";
 import {StepperComponent} from "./setup/stepper/stepper.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {ItemsListComponent} from "./items-list/items-list.component";
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import {ReactiveFormsModule} from "@angular/forms";
   ],
   declarations: [
     ContentComponent,
-    StepperComponent
+    StepperComponent,
+    ItemsListComponent
   ],
   providers: [],
   exports: [
