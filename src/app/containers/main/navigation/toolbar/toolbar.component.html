@@ -1,9 +1,9 @@
 <md-toolbar color="primary">
 
-  <button class="app-icon-button" (click)="sidenav.toggle()">
+  <button class="app-icon-button" (click)="sidenav.toggle()" *ngIf="sidenav">
     <i class="material-icons app-toolbar-menu">menu</i>
   </button>
 
-  Material UI
+  {{text}}
 
 </md-toolbar>

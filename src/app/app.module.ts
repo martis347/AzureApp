@@ -10,7 +10,6 @@ import {MainModule} from './containers/main/main.module';
 import {ServicesModule} from './services/services.module';
 import {MDL} from "./misc/MaterialDesignLiteUpgradeElement";
 import {CommonModule} from "@angular/common";
-import {MdSidenavModule, MdToolbarModule, MdButtonModule, MdListModule} from "@angular/material";
 import {LoginGuard} from "./routing/login-guard";
 import {AppRoutingModule} from "./routing/app-routing.module";
 
@@ -23,10 +22,6 @@ import {AppRoutingModule} from "./routing/app-routing.module";
     BrowserModule,
     CommonModule,
     BrowserAnimationsModule,
-    MdToolbarModule,
-    MdSidenavModule,
-    MdButtonModule,
-    MdListModule,
     FormsModule ,
     HttpModule,
     GithubModule,

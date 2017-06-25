@@ -6,3 +6,8 @@ md-sidenav {
   padding: 0;
   width: 220px;
 }
+
+md-sidenav-container {
+  height: 100vh;
+  position: relative;
+}

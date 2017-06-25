@@ -9,7 +9,10 @@ import {MdSidenav} from '@angular/material';
 
 export class ToolbarComponent {
   @Input() sidenav: MdSidenav;
+  @Input() text: string;
 
-  constructor() { }
+  constructor() {
+    this.text = this.text ? this.text : 'Material UI';
+  }
 
 }

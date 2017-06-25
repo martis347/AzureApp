@@ -13,7 +13,6 @@ export class WeekdayGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot) {
     const date = moment(route.params.date, Constants.DATE_FORMAT, true);
     let result = true;
-    debugger;
     if (!date.isValid()) {
       this.router.navigate(['/lunch', Utilities.GetTodaysDate()])
       result = false;

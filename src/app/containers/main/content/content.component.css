@@ -1,6 +1,3 @@
-
-
-
 .mat-list, .mat-nav-list {
   border: 1px solid rgba(0, 0, 0, 0.12);
   margin: 20px 20px 0 0;
@@ -23,11 +20,20 @@ h2 {
   color: rgba(0, 0, 0, 0.54);
 }
 
-.items-list {
-  width: 40%;
-  display: inline-block;
-}
+@media (min-width: 800px) {
+  .items-list {
+    position: absolute;
+    display: inline-block;
+    width: calc(50vw - 70px);
+  }
 
-.items-list:nth-child(2) {
-  position: absolute;
+  .items-list.left {
+    left: 0;
+    margin-left: 40px;
+  }
+
+  .items-list.right {
+    right: 0;
+    margin-right: 40px;
+  }
 }

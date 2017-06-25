@@ -5,3 +5,7 @@
 .mdl-step.is-active:first-child {
   height: 140px;
 }
+
+.mdl-stepper {
+  margin:auto;
+}
