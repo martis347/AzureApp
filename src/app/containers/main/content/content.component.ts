@@ -19,10 +19,9 @@ export class ContentComponent {
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(params => {
-      console.log(params['day']);
       this.showLoader = true;
       setTimeout(() => this.showLoader = false, 1200);
-      this.currentDay = params['day'];
+      this.currentDay = params['date'];
     });
 
     this.categories = this.red.map(item => {return item.category}).filter(this.onlyUnique);

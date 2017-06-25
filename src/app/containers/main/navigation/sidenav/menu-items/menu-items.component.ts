@@ -27,7 +27,6 @@ export class MenuItemsComponent implements OnInit{
   ngOnInit(){
     this.activatedRoute.params.subscribe((params: Params) => {
       let day = params['day'];
-      console.log(day);
     });
   }
 
