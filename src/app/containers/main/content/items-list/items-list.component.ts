@@ -16,7 +16,7 @@ export class ItemsListComponent implements OnInit{
   subItems: any[] = [];
   selectedItem: any;
 
-  getItemImage(item){
+  getItemImage(item) {
     let result;
     if(item.dishType === 'side'){
       result = 'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/side-dish.png';

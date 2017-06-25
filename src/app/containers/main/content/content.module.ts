@@ -9,7 +9,6 @@ import {MDModule} from "../../../misc/material-design.module";
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     MDModule
   ],
   declarations: [

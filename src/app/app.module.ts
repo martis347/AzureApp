@@ -7,11 +7,13 @@ import {ServicesModule} from './services/services.module';
 import {MDL} from "./misc/MaterialDesignLiteUpgradeElement";
 import {LoginGuard} from "./routing/login-guard";
 import {AppRoutingModule} from "./routing/app-routing.module";
+import {WeekChangingModal} from "./containers/main/modals/week-changing/week-changing.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     MDL,
+
   ],
   imports: [
     GithubModule,
@@ -21,7 +23,8 @@ import {AppRoutingModule} from "./routing/app-routing.module";
     AppRoutingModule
   ],
   providers: [LoginGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule {
 }

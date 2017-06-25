@@ -11,11 +11,11 @@ import {StepperComponent} from "./setup/stepper/stepper.component";
 import {MDModule} from "../../misc/material-design.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SetupComponent} from "./setup/setup.component";
+import {WeekChangingModal} from "./modals/week-changing/week-changing.component";
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    ReactiveFormsModule,
     CommonModule,
     ContentModule,
     MDModule,
@@ -27,11 +27,14 @@ import {SetupComponent} from "./setup/setup.component";
     ToolbarComponent,
     MenuItemsComponent,
     StepperComponent,
-    SetupComponent
+    SetupComponent,
+    WeekChangingModal
+
   ],
   exports: [
     MainComponent
-  ]
+  ],
+  entryComponents: [WeekChangingModal]
 })
 export class MainModule {
 }

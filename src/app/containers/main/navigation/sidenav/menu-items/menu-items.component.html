@@ -6,6 +6,7 @@
   <a md-list-item  *ngFor="let day of days" (click)="onClick(day)">{{day.displayName}}</a>
 </ng-template>
 <ng-template #settings_content>
-  <a md-list-item href="page1.html">Change Name</a>
-  <a md-list-item href="page2.html">Settings</a>
+  <a md-list-item href="">Change Name</a>
+  <a md-list-item href="">Settings</a>
+  <a md-list-item (click)="onWeekChange()">Choose From Other Week</a>
 </ng-template>

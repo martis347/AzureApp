@@ -1,0 +1,18 @@
+<h1 md-dialog-title>Choose A Date</h1>
+<div md-dialog-content>
+  <md-input-container>
+    <form [formGroup]="dateForm">
+      <input class="time-input" #input mdInput [mdDatepicker]="picker" placeholder="Date" [mdDatepickerFilter]="filterDays" (input)="onChange()" formControlName="date">
+    </form>
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    <md-error *ngIf="dateForm.invalid">Select A Valid Date</md-error>
+  </md-input-container>
+  <md-datepicker #picker></md-datepicker>
+</div>
+
+<div md-dialog-actions>
+  <button md-button [md-dialog-close]="input.value" [disabled]="dateForm.invalid || !wasChanged ">OK</button>
+  <button md-button md-dialog-close="Cancel">Cancel</button>
+</div>
+
+
