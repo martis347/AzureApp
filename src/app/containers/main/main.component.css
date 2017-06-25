@@ -1,4 +1,8 @@
-
 .check-circle {
   padding: 16px;
+}
+
+md-sidenav {
+  padding: 0;
+  width: 220px;
 }

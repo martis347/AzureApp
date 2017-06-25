@@ -41,7 +41,7 @@ export class SelectedChipsComponent {
     }
   }
 
-  private removeChip(item) {
+  removeChip(item) {
     if(this.combinedSelected){
       this.items = [];
       this.price.emit(0);
@@ -51,6 +51,14 @@ export class SelectedChipsComponent {
     this.price.emit((this.items[0] ? +this.items[0].price : 0) + (this.items[1] ? +this.items[1].price : 0));
   }
 
+  stripDescription(text){
+    const regex = text.match('(^.*)\\(.*\\)$');
+    let result = text;
+    if(regex && regex[1]){
+      result = regex[1];
+    }
+    return result;
+  }
 
   constructor() {
 

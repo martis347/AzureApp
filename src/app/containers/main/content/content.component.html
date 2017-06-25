@@ -23,7 +23,7 @@
       <md-card-subtitle>a.k.a. Žalieji</md-card-subtitle>
     </md-card-header>
     <md-card-content>
-      <items-list [items]="green"></items-list>
+      <items-list [items]="green" (onSelect)="chips.modifyItems($event)"></items-list>
     </md-card-content>
   </md-card>
 

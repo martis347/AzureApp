@@ -3,6 +3,9 @@ import {Http} from "@angular/http";
 import {Observable} from "rxjs";
 import {FormControl} from "@angular/forms";
 import {Router} from "@angular/router";
+import * as moment from 'moment';
+import {Constants} from "../../../../../misc/constants";
+import {Utilities} from "../../../../../misc/utilities";
 
 declare const gapi: any;
 
@@ -50,7 +53,7 @@ export class StepperComponent implements OnInit{
   onDone(){
     this.stepper.nativeElement.MaterialStepper.next();
 
-    this.router.navigate(['/lunch', 'monday']);
+    this.router.navigate(['/lunch', Utilities.GetTodaysDate()]);
   }
 
   onBack(){

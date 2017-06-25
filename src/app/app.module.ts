@@ -2,31 +2,21 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
-import { RouterModule } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
-import {MainComponent} from './containers/main/main.component';
-import {GithubComponent} from './containers/github/github.component';
-import {SidenavComponent} from './navigation/sidenav/sidenav.component';
-import {ToolbarComponent} from './navigation/toolbar/toolbar.component';
 import {GithubModule} from './containers/github/github.module';
 import {HomeModule} from './containers/home/home.module';
 import {MainModule} from './containers/main/main.module';
 import {ServicesModule} from './services/services.module';
-import {MDL} from "./MaterialDesignLiteUpgradeElement";
+import {MDL} from "./misc/MaterialDesignLiteUpgradeElement";
 import {CommonModule} from "@angular/common";
 import {MdSidenavModule, MdToolbarModule, MdButtonModule, MdListModule} from "@angular/material";
-import {MenuItemsComponent} from "./navigation/sidenav/menu-items/menu-items.component";
-import {StepperComponent} from "./containers/main/content/setup/stepper/stepper.component";
-import {MainGuard} from "./main-guard";
-import {LoginGuard} from "./login-guard";
+import {LoginGuard} from "./routing/login-guard";
+import {AppRoutingModule} from "./routing/app-routing.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent,
-    ToolbarComponent,
-    MenuItemsComponent,
     MDL,
   ],
   imports: [
@@ -43,15 +33,9 @@ import {LoginGuard} from "./login-guard";
     HomeModule,
     MainModule,
     ServicesModule,
-    RouterModule.forRoot([
-      { path: 'setup', component: StepperComponent, canActivate: [LoginGuard] },
-      { path: 'lunch/:day', component: MainComponent, canActivate: [MainGuard]},
-      { path: 'github', component: GithubComponent },
-      { path: '', redirectTo: 'setup', pathMatch: 'full' },
-      { path: '**', redirectTo: '', pathMatch: 'full' }
-    ]),
+    AppRoutingModule
   ],
-  providers: [MainGuard, LoginGuard],
+  providers: [LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

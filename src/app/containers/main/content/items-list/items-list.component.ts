@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, AfterViewChecked, Output, EventEmitter} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'items-list',
@@ -11,7 +11,6 @@ export class ItemsListComponent implements OnInit{
   @Output() public onSelect: EventEmitter<any> = new EventEmitter();
 
   isCategorized: boolean;
-
   categories: string[];
   displayedCategories: string[];
   subItems: any[] = [];
@@ -80,7 +79,6 @@ export class ItemsListComponent implements OnInit{
     } else {
       result = this.items;
     }
-
 
     return result;
   }

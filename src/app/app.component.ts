@@ -1,5 +1,4 @@
-import {Component, AfterViewChecked, ViewChild, Input} from '@angular/core';
-import {MdSidenav} from "@angular/material";
+import {Component, AfterViewChecked} from '@angular/core';
 declare const componentHandler: any;
 
 @Component({
@@ -8,16 +7,9 @@ declare const componentHandler: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewChecked {
-  @ViewChild(MdSidenav) sidenav : MdSidenav;
-
-
   ngAfterViewChecked() {
     if (componentHandler) {
       componentHandler.upgradeAllRegistered();
     }
-  }
-
-  onSwipeLeft(){
-    this.sidenav.close();
   }
 }

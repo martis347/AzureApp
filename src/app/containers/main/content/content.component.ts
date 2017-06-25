@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {SelectedChipsComponent} from "./selected-chips/selected-chips.component";
 

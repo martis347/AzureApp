@@ -1,5 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {Hammer} from "hammerjs";
+import {MdSidenav} from "@angular/material";
 
 @Component({
   selector: 'main-component',
@@ -8,14 +9,9 @@ import {Hammer} from "hammerjs";
 })
 
 export class MainComponent {
-  onDayClick(newDay): void {
-    this.selectedDay = newDay;
-  }
+  @ViewChild(MdSidenav) sidenav : MdSidenav;
 
-
-
-  selectedDay;
-
-  constructor() {
+  onSwipeLeft(){
+    this.sidenav.close();
   }
 }
