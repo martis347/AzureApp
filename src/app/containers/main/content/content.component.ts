@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {SelectedChipsComponent} from "./selected-chips/selected-chips.component";
+import {MdSnackBar, MdSnackBarConfig} from "@angular/material";
 
 @Component({
   selector: 'app-content',
@@ -10,6 +11,7 @@ import {SelectedChipsComponent} from "./selected-chips/selected-chips.component"
 
 export class ContentComponent {
   @ViewChild('chips') chips: SelectedChipsComponent;
+
   currentDay: string = 'monday';
   showLoader: boolean = false;
   categories: string[];
@@ -17,7 +19,7 @@ export class ContentComponent {
   price: number = 0;
 
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute, private snackBar: MdSnackBar) {
     this.activatedRoute.params.subscribe(params => {
       this.showLoader = true;
       setTimeout(() => this.showLoader = false, 1200);
@@ -30,6 +32,10 @@ export class ContentComponent {
 
   onPriceChange(newPrice){
     this.price = newPrice;
+  }
+
+  public onConfirmClick() {
+    this.snackBar.open('Successfully Ordered!', 'OK', {duration: 4000} );
   }
 
   private onlyUnique(value, index, self) {

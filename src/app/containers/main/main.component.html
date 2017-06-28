@@ -5,10 +5,10 @@
     <sidenav-content></sidenav-content>
   </md-sidenav>
 
-  <app-content></app-content>
+  <app-content #content></app-content>
 
 </md-sidenav-container>
 
 <span class="app-action">
-  <button md-fab><i class="material-icons app-toolbar-menu check-circle">check circle</i></button>
+  <button md-fab (click)="onCheckClick()"><i class="material-icons app-toolbar-menu check-circle">check circle</i></button>
 </span>

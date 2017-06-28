@@ -60,6 +60,10 @@ export class SelectedChipsComponent {
     return result;
   }
 
+  getChips() {
+    return this.items;
+  }
+
   constructor() {
 
   }

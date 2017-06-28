@@ -2,7 +2,8 @@ import {NgModule} from '@angular/core';
 import {
   MdButtonModule, MdListModule, MdMenuModule, MdToolbarModule, MdSidenavModule,
   MdSlideToggleModule, MdChipsModule, MdAutocompleteModule, MdInputModule, MdProgressBarModule, MdProgressSpinnerModule,
-  MdCardModule, MdCheckboxModule, MdDialogModule, MdDatepickerModule, MdNativeDateModule, MdErrorDirective
+  MdCardModule, MdCheckboxModule, MdDialogModule, MdDatepickerModule, MdNativeDateModule, MdErrorDirective,
+  MdSnackBarModule
 } from '@angular/material';
 import {ReactiveFormsModule} from "@angular/forms";
 
@@ -24,7 +25,8 @@ const modules: any[] = [
   MdDialogModule,
   MdDatepickerModule,
   MdNativeDateModule,
-  MdNativeDateModule
+  MdNativeDateModule,
+  MdSnackBarModule
 ];
 
 @NgModule({
