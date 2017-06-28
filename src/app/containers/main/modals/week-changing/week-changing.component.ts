@@ -1,5 +1,5 @@
 import {MdDatepicker, DateAdapter} from "@angular/material";
-import {Component, AfterViewInit, ViewChild, Input, ElementRef} from "@angular/core";
+import {Component, ViewChild, Input} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
 import * as moment from 'moment';
 import {Constants} from "../../../../misc/constants";
@@ -9,31 +9,19 @@ import {Constants} from "../../../../misc/constants";
   templateUrl: 'week-changing.component.html',
   styleUrls: ['week-changing.component.css']
 })
-export class WeekChangingModal implements AfterViewInit {
+export class WeekChangingModal {
   @ViewChild('picker') picker: MdDatepicker<any>;
   @ViewChild('input') input: Input;
-  wasChanged: boolean = false;
   dateForm: FormGroup = new FormGroup({
-    date: new FormControl('', this.isDateValid)
+    date: new FormControl(moment().toDate(), this.isDateValid)
   });
 
-
-  ngAfterViewInit(): void {
-
-    this.picker.selectedChanged.subscribe(newValue => {
-      console.log(newValue);
-    })
-  }
 
   filterDays(date: Date){
     return date.getDay() !== 0 && date.getDay() !== 6
   }
 
-  onChange(){
-    this.wasChanged = true;
-  }
-
-  isDateValid(c: FormControl) {
+  isDateValid() {
     let element: Element = window.document.getElementsByClassName('time-input')[0];
     if(!element){
       return null;

@@ -30,7 +30,9 @@ export class MenuItemsComponent implements OnInit{
   onWeekChange() {
     let dialogRef = this.dialog.open(WeekChangingModal);
     dialogRef.afterClosed().subscribe(result => {
-      this.router.navigate(['/lunch', result]);
+      if(moment(result, Constants.DATE_FORMAT).isValid()){
+        this.router.navigate(['/lunch', result]);
+      }
     });
   }
 
