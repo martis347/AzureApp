@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import {StorageService} from "../../../services/storage.service";
 
 
 @Injectable()
 export class MainGuard implements CanActivate {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private storage: StorageService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (localStorage.getItem('user')) {
+    if (this.storage.GetItem('access_token')) {
       return true;
     }
 

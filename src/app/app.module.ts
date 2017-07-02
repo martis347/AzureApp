@@ -7,6 +7,8 @@ import {ServicesModule} from './services/services.module';
 import {MDL} from "./misc/MaterialDesignLiteUpgradeElement";
 import {LoginGuard} from "./routing/login-guard";
 import {AppRoutingModule} from "./routing/app-routing.module";
+import {ExtendedHttpService} from "./services/extended-http.service";
+import {Http, HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -19,9 +21,13 @@ import {AppRoutingModule} from "./routing/app-routing.module";
     HomeModule,
     MainModule,
     ServicesModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
-  providers: [LoginGuard],
+  providers: [
+    LoginGuard,
+    {provide: Http, useClass: ExtendedHttpService}
+  ],
   bootstrap: [AppComponent],
 
 })

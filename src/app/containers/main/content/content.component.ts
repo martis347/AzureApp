@@ -1,7 +1,10 @@
 import {Component, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {SelectedChipsComponent} from "./selected-chips/selected-chips.component";
-import {MdSnackBar, MdSnackBarConfig} from "@angular/material";
+import {MdSnackBar} from "@angular/material";
+import {ProvidersService} from "app/services/api/providers.service";
+import {Dish} from "../../../models/Dish";
+import {DishType} from "../../../models/DishType.enum";
 
 @Component({
   selector: 'app-content',
@@ -17,17 +20,31 @@ export class ContentComponent {
   categories: string[];
   displayedCategories: string[];
   price: number = 0;
+  red: Dish[];
+  green: Dish[];
 
-
-  constructor(private activatedRoute: ActivatedRoute, private snackBar: MdSnackBar) {
+  constructor(private activatedRoute: ActivatedRoute, private snackBar: MdSnackBar, private providersService: ProvidersService) {
     this.activatedRoute.params.subscribe(params => {
       this.showLoader = true;
       setTimeout(() => this.showLoader = false, 1200);
       this.currentDay = params['date'];
     });
 
-    this.categories = this.red.map(item => {return item.category}).filter(this.onlyUnique);
-    this.displayedCategories = [this.categories[0], 'zalieji']
+
+    this.providersService.GetProviders().subscribe(response => {
+      debugger;
+      let providers: any[] = response.json();
+
+      this.categories = providers.map(p => p.dishes)[0].map(dish => dish.category).filter(this.onlyUnique);
+      this.displayedCategories = [this.categories[0], 'zalieji'];
+      providers.forEach(p => {
+        if(p.name === 'Punto Jazz'){
+          this.red = p.dishes;
+        } else if(p.name === 'www.pietaukskaniai.lt'){
+          this.green = p.dishes;
+        }
+      });
+    });
   }
 
   onPriceChange(newPrice){
@@ -42,17 +59,17 @@ export class ContentComponent {
     return self.indexOf(value) === index;
   }
 
-  green: any[] = [
-    {name: 'RAUGINTŲ KOPŪSTŲ SRIUBA', price: '1.00', dishType: 'side'},
-    {name: 'BULVIŲ PLOKŠTAINIS', price: '2.40', dishType: 'main'},
-    {name: 'KIAULIENOS GULIAŠAS', price: '2.70', dishType: 'main'},
-    {name: 'Sultinys su kibinu', price: '1.90', dishType: 'main'},
-    {name: 'Sultinys', price: '1.00', dishType: 'side'},
-    {name: 'Varškės spurga', price: '0.40', dishType: 'side'},
-    {name: 'Silkė su karšta bulve', price: '2.00', dishType: 'main'}
-  ];
+  /*green: any[] = [
+    {name: 'RAUGINTŲ KOPŪSTŲ SRIUBA', price: '1.00', dishType: DishType.Side},
+    {name: 'BULVIŲ PLOKŠTAINIS', price: '2.40', dishType: DishType.Main},
+    {name: 'KIAULIENOS GULIAŠAS', price: '2.70', dishType: DishType.Main},
+    {name: 'Sultinys su kibinu', price: '1.90', dishType: DishType.Main},
+    {name: 'Sultinys', price: '1.00', dishType: DishType.Side},
+    {name: 'Varškės spurga', price: '0.40', dishType: DishType.Side},
+    {name: 'Silkė su karšta bulve', price: '2.00', dishType: DishType.Main}
+  ];*/
 
-  red: any[] = [{
+  /*red: any[] = [{
     name: 'Burokėlių',
     price: '1.00',
     category: 'Dienos pietūs',
@@ -200,6 +217,6 @@ export class ContentComponent {
     category: 'Karštieji',
     dishType: 'main'
   }
-  ]
+  ]*/
 
 }

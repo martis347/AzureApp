@@ -2,22 +2,28 @@
   <md-card>
     <md-card-header>
       <md-card-title>Selected Dishes</md-card-title>
-      <md-card-subtitle>Total Price: {{price}}€</md-card-subtitle>
+      <md-card-subtitle>Total Price: {{price| currency:'EUR':true:'1.2-2'}}</md-card-subtitle>
     </md-card-header>
     <selected-chips #chips (price)="onPriceChange($event)"></selected-chips>
   </md-card>
 
-  <md-card class="items-list left">
-    <md-card-header>
-      <md-card-title>Punto Jazz</md-card-title>
-      <md-card-subtitle>a.k.a. Raudonieji</md-card-subtitle>
-    </md-card-header>
-    <md-card-content>
-      <items-list [items]="red" (onSelect)="chips.modifyItems($event)"></items-list>
-    </md-card-content>
+  <md-card *ngIf="!red">
+    <md-progress-bar
+      class="app-progress"
+      mode="indeterminate"
+      aria-label="Indeterminate progress-bar example"></md-progress-bar>
+  </md-card >
+  <md-card class="items-list" *ngIf="red" [class.left]="!!green">
+      <md-card-header>
+        <md-card-title>Punto Jazz</md-card-title>
+        <md-card-subtitle>a.k.a. Raudonieji</md-card-subtitle>
+      </md-card-header>
+      <md-card-content>
+        <items-list [items]="red" (onSelect)="chips.modifyItems($event)"></items-list>
+      </md-card-content>
   </md-card>
 
-  <md-card class="items-list right">
+  <md-card class="items-list" *ngIf="green">
     <md-card-header>
       <md-card-title>www.pietaukskaniai.lt</md-card-title>
       <md-card-subtitle>a.k.a. Žalieji</md-card-subtitle>
@@ -26,9 +32,6 @@
       <items-list [items]="green" (onSelect)="chips.modifyItems($event)"></items-list>
     </md-card-content>
   </md-card>
-
-
-
 
 <!--
   <md-card *ngIf="currentDay != 'monday'">

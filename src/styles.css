@@ -77,3 +77,7 @@ md-sidenav-layout.m2app-dark {
 .app-progress {
   margin: 20px;
 }
+
+.g-signin2 {
+  display: none;
+}

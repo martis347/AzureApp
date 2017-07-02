@@ -10,12 +10,12 @@
     </a>
     <div *ngIf="displayedCategories.indexOf(category) !== -1">
       <div *ngFor="let item of itemsByCategory(category)">
-        <a md-list-item (click)="onItemClick(item)" *ngIf="!item.side || item.side.length < 2">
+        <a md-list-item (click)="onItemClick(item)" *ngIf="!item.sideDishes || item.sideDishes.length < 2">
             <img md-list-avatar [src]="getItemImage(item)">
             <span md-line>{{ item.name }}</span>
             <span md-line class="demo-secondary-text"> {{ item.price }}€ </span>
         </a>
-        <a md-list-item (click)="onItemClick(item)" *ngIf="item.side && item.side.length > 1" [mdMenuTriggerFor]="menu">
+        <a md-list-item (click)="onItemClick(item)" *ngIf="item.sideDishes && item.sideDishes.length > 1" [mdMenuTriggerFor]="menu">
           <img md-list-avatar [src]="getItemImage(item)">
           <span md-line>{{ item.name }}</span>
           <span md-line class="demo-secondary-text"> {{ item.price }}€ </span>

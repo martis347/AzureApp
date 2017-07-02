@@ -1,5 +1,5 @@
 <md-chip-list >
-  <md-chip selected="true" [color]="item.dishType === 'main' ? 'primary' : 'accent'" *ngFor="let item of items">
+  <md-chip selected="true" [color]="item.dishType === dishTypes.Main ? 'primary' : 'accent'" *ngFor="let item of items">
     <span>{{stripDescription(item.name)}}</span>
     <md-icon (click)="removeChip(item)" >✖</md-icon></md-chip>
 </md-chip-list>

@@ -3,15 +3,17 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 import * as moment from 'moment';
 import {Constants} from "../misc/constants";
 import {Utilities} from "../misc/utilities";
+import {StorageService} from "../services/storage.service";
 
+declare let gapi: any;
 
 @Injectable()
 export class LoginGuard implements CanActivate {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private storage: StorageService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (!localStorage.getItem('user')) {
+    if (!this.storage.GetItem('access_token')) {
       return true;
     }
 

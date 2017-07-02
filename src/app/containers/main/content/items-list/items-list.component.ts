@@ -1,4 +1,6 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {Dish} from "../../../../models/Dish";
+import {DishType} from "../../../../models/DishType.enum";
 
 @Component({
   selector: 'items-list',
@@ -18,9 +20,9 @@ export class ItemsListComponent implements OnInit{
 
   getItemImage(item) {
     let result;
-    if(item.dishType === 'side'){
+    if(item.dishType === DishType.Side){
       result = 'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/side-dish.png';
-    } else if(item.dishType === 'main'){
+    } else if(item.dishType === DishType.Main){
       result = 'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/main-dish.png';
     } else {
       result = 'https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/combined-dish.png';
@@ -47,24 +49,24 @@ export class ItemsListComponent implements OnInit{
   }
 
   onItemClick(item) {
-    this.subItems = item.side;
-    if(item.dishType !== 'combined'){
+    this.subItems = item.sideDishes;
+    if(item.dishType !== DishType.Combined){
       this.onSelect.emit(item);
     }
     else if(this.subItems && this.subItems.length > 1){
       this.selectedItem = item;
     } else {
       this.onSelect.emit(Object.assign({}, item, {
-        side: this.subItems ? this.subItems[0] : undefined,
-        main: item.main ? item.main[0] : undefined
+        sideDishes: this.subItems ? this.subItems[0] : undefined,
+        mainDishes: item.mainDishes ? item.mainDishes[0] : undefined
       }));
     }
   }
 
   onSubItemClick(subitem) {
     this.onSelect.emit(Object.assign({}, this.selectedItem, {
-      side: subitem,
-      main: this.selectedItem.main[0]
+      sideDishes: subitem,
+      mainDishes: this.selectedItem.mainDishes[0]
     }));
   }
 
@@ -83,7 +85,7 @@ export class ItemsListComponent implements OnInit{
     return result;
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.isCategorized = !!this.items[0].category;
     if(this.isCategorized){
       this.categories = this.items.map(item => {return item.category}).filter(this.onlyUnique);

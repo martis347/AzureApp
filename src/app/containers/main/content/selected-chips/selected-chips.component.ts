@@ -1,4 +1,5 @@
 import {Component, Output, EventEmitter} from '@angular/core';
+import {DishType} from "../../../../models/DishType.enum";
 
 @Component({
   selector: 'selected-chips',
@@ -11,28 +12,29 @@ export class SelectedChipsComponent {
 
   private items: any[] = [];
   private combinedSelected: boolean = false;
+  dishTypes: any = DishType;
 
   public modifyItems(item) {
-    if (item.dishType === 'combined') {
+    if (item.dishType === DishType.Combined) {
       this.items = [];
       this.combinedSelected = true;
-      this.items.push({name: item.main, dishType: 'main'});
-      this.items.push({name: item.side, dishType: 'side'});
+      this.items.push({name: item.mainDishes, dishType: DishType.Main});
+      this.items.push({name: item.sideDishes, dishType: DishType.Side});
 
       this.price.emit(item.price);
     } else {
       if (this.combinedSelected) {
         this.items = [];
+        this.combinedSelected = false;
       }
-      this.combinedSelected = false;
-      if (item.dishType === 'main') {
+      if (item.dishType === DishType.Main) {
         this.items = this.items.filter(item => {
-          return item.dishType !== 'main';
+          return item.dishType !== DishType.Main;
         });
         this.items.push(item);
       } else {
         this.items = this.items.filter(item => {
-          return item.dishType !== 'side';
+          return item.dishType !== DishType.Side;
         });
         this.items.push(item);
       }
@@ -58,10 +60,6 @@ export class SelectedChipsComponent {
       result = regex[1];
     }
     return result;
-  }
-
-  getChips() {
-    return this.items;
   }
 
   constructor() {

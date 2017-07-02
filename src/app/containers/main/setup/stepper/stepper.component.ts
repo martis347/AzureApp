@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {FormControl} from "@angular/forms";
 import {Router} from "@angular/router";
 import {Utilities} from "../../../../misc/utilities";
+import {StorageService} from "app/services/storage.service";
 
 declare const gapi: any;
 
@@ -34,7 +35,7 @@ export class StepperComponent implements OnInit{
     return user ? user.name : user;
   }
 
-  constructor(ngZone: NgZone, private router: Router) {
+  constructor(ngZone: NgZone, private router: Router, private storage: StorageService) {
     window['onSignIn'] = (googleUser) => ngZone.run(() => this.onSignIn(googleUser));
   }
 
@@ -66,6 +67,8 @@ export class StepperComponent implements OnInit{
 
       googleUser.grant(options).then(
         function(success){
+          this.storage.AddItem('access_token', gapi.auth2.getAuthInstance().currentUser.get().Zi.access_token);
+
           console.log(JSON.stringify({message: "success", value: success}));
         },
         function(fail){
@@ -73,6 +76,7 @@ export class StepperComponent implements OnInit{
         });
     }
 
+    this.storage.AddItem('access_token', gapi.auth2.getAuthInstance().currentUser.get().Zi.access_token);
     this.stepper.nativeElement.MaterialStepper.next();
   }
 
