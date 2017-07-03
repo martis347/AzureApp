@@ -6,10 +6,8 @@ import {CommonModule} from "@angular/common";
 import {MenuItemsComponent} from "./navigation/sidenav/menu-items/menu-items.component";
 import {ToolbarComponent} from "./navigation/toolbar/toolbar.component";
 import {SidenavComponent} from "./navigation/sidenav/sidenav.component";
-import {MainContentRoutingModule} from "./routing/main-content-routing.module";
 import {StepperComponent} from "./setup/stepper/stepper.component";
 import {MDModule} from "../../misc/material-design.module";
-import {ReactiveFormsModule} from "@angular/forms";
 import {SetupComponent} from "./setup/setup.component";
 import {WeekChangingModal} from "./modals/week-changing/week-changing.component";
 
@@ -18,8 +16,7 @@ import {WeekChangingModal} from "./modals/week-changing/week-changing.component"
     BrowserAnimationsModule,
     CommonModule,
     ContentModule,
-    MDModule,
-    MainContentRoutingModule
+    MDModule
   ],
   declarations: [
     MainComponent,

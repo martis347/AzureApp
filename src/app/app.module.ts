@@ -25,7 +25,6 @@ import {Http, HttpModule} from "@angular/http";
     HttpModule
   ],
   providers: [
-    LoginGuard,
     {provide: Http, useClass: ExtendedHttpService}
   ],
   bootstrap: [AppComponent],

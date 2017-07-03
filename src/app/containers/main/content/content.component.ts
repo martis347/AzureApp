@@ -5,6 +5,7 @@ import {MdSnackBar} from "@angular/material";
 import {ProvidersService} from "app/services/api/providers.service";
 import * as moment from 'moment';
 import {Provider} from "../../../models/Provider";
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-content',

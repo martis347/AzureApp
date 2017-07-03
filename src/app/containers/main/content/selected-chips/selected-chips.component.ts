@@ -10,7 +10,7 @@ import {DishType} from "../../../../models/DishType.enum";
 export class SelectedChipsComponent {
   @Output() selection: EventEmitter <any> = new EventEmitter();
 
-  private items: any[] = [];
+  items: any[] = [];
   private price: number = 0;
   private combinedSelected: boolean = false;
   dishTypes: any = DishType;

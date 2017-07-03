@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, Router} from '@angular/router';
 import * as moment from 'moment';
-import {Constants} from "../../../misc/constants";
-import {Utilities} from "../../../misc/utilities";
+import {Constants} from "../misc/constants";
+import {Utilities} from "../misc/utilities";
 
 @Injectable()
 export class WeekdayGuard implements CanActivate {

@@ -1,26 +1,29 @@
 import {NgModule} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
 import {LoginGuard} from "./login-guard";
-import {GithubComponent} from "../containers/github/github.component";
-import {MainGuard} from "../containers/main/routing/main-guard";
-import {Utilities} from "../misc/utilities";
+import {MainGuard} from "./main-guard";
 import {SetupComponent} from "../containers/main/setup/setup.component";
+import {WeekdayGuard} from "./weekday-guard";
+import {MainComponent} from "../containers/main/main.component";
 
 const appRoutes: Routes = [
-  { path: 'setup', component: SetupComponent, canActivate: [LoginGuard] },
-  { path: '', canActivate: [MainGuard], children: [
-    { path: 'github', component: GithubComponent },
-    { path: '**', redirectTo: '/lunch/' + Utilities.GetTodaysDate(), pathMatch: 'full' }
-  ]},
-  { path: '**', redirectTo: '', pathMatch: 'full' }
+  {path: 'setup', component: SetupComponent, canActivate: [LoginGuard]},
+  {path: 'lunch/:date', component: MainComponent, canActivate: [WeekdayGuard, MainGuard]},
+  {path: 'lunch', component: MainComponent, canActivate: [WeekdayGuard, MainGuard]},
+  {path: 'lunch/**', redirectTo: 'lunch/', pathMatch: 'full'},
+  {path: '', redirectTo: 'lunch/', pathMatch: 'full'},
+  {path: '**', redirectTo: 'lunch/', pathMatch: 'full'}
 ];
-
+appRoutes[2].redirectTo = 'lunch/';
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes),
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    MainGuard, WeekdayGuard, LoginGuard
   ]
 })
 export class AppRoutingModule {
