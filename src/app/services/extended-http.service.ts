@@ -26,6 +26,10 @@ export class ExtendedHttpService extends Http {
         console.log("Access_token_expired: redirecting to login.");
         this._storage.RemoveItem('access_token');
         this._router.navigate(['/setup']);
+      } else if(res.status === 500) {
+        res['message'] = 'Server error has occurred, please try again.';
+      } else {
+        res['message'] = res.json().message || 'An error occurred while processing request.';
       }
       return Observable.throw(res);
     };

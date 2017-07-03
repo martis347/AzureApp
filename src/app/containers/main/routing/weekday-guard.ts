@@ -13,11 +13,10 @@ export class WeekdayGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot) {
     const date = moment(route.params.date, Constants.DATE_FORMAT, true);
     let result = true;
-    if (!date.isValid()) {
-      this.router.navigate(['/lunch', Utilities.GetTodaysDate()])
-      result = false;
-    } else if ([6, 7].indexOf(date.isoWeekday()) !== -1) {
-      this.router.navigate(['/lunch', moment().startOf('isoWeek').format(Constants.DATE_FORMAT)])
+    if (!date.isValid() ||
+      [0, 1, 2, 3, 4].indexOf(date.diff(moment().startOf('isoWeek'), 'days')) === -1) //belongs to other week
+    {
+      this.router.navigate(['/lunch', Utilities.GetTodaysDate()]);
       result = false;
     }
 

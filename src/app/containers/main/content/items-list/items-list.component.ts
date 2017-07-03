@@ -90,9 +90,6 @@ export class ItemsListComponent implements OnInit{
     if(this.isCategorized){
       this.categories = this.items.map(item => {return item.category}).filter(this.onlyUnique);
       this.displayedCategories = [this.categories[0]]
-    } else {
-      this.categories = ['Žalieji'];
-      this.displayedCategories = [this.categories[0]]
     }
   }
 

@@ -24,7 +24,7 @@ export class MenuItemsComponent implements OnInit{
   ];
 
   onClick(day): void {
-    this.router.navigate(['/lunch', this.startingWeek.add(day.id, 'days').format(Constants.DATE_FORMAT)]);
+    this.router.navigate(['/lunch', moment(this.startingWeek).add(day.id, 'days').format(Constants.DATE_FORMAT)]);
   }
 
   onWeekChange() {

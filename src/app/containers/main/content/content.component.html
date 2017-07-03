@@ -2,34 +2,34 @@
   <md-card>
     <md-card-header>
       <md-card-title>Selected Dishes</md-card-title>
-      <md-card-subtitle>Total Price: {{price| currency:'EUR':true:'1.2-2'}}</md-card-subtitle>
+      <md-card-subtitle>Total Price: {{selection.price | currency:'EUR':true:'1.2-2'}}</md-card-subtitle>
     </md-card-header>
-    <selected-chips #chips (price)="onPriceChange($event)"></selected-chips>
+    <selected-chips #chips (selection)="onSelectionChange($event)"></selected-chips>
   </md-card>
 
-  <md-card *ngIf="!red">
+  <md-card *ngIf="loadingProviders">
     <md-progress-bar
       class="app-progress"
       mode="indeterminate"
       aria-label="Indeterminate progress-bar example"></md-progress-bar>
   </md-card >
-  <md-card class="items-list" *ngIf="red" [class.left]="!!green">
+  <md-card class="items-list" *ngIf="providerA" [class.left]="!!providerB">
       <md-card-header>
-        <md-card-title>Punto Jazz</md-card-title>
-        <md-card-subtitle>a.k.a. Raudonieji</md-card-subtitle>
+        <md-card-title>{{providerA.name}}</md-card-title>
+        <md-card-subtitle *ngIf="providerA.description">{{providerA.description}}</md-card-subtitle>
       </md-card-header>
       <md-card-content>
-        <items-list [items]="red" (onSelect)="chips.modifyItems($event)"></items-list>
+        <items-list [items]="providerA.dishes" (onSelect)="chips.modifyItems($event)"></items-list>
       </md-card-content>
   </md-card>
 
-  <md-card class="items-list" *ngIf="green">
+  <md-card class="items-list right" *ngIf="providerB" >
     <md-card-header>
-      <md-card-title>www.pietaukskaniai.lt</md-card-title>
-      <md-card-subtitle>a.k.a. Žalieji</md-card-subtitle>
+      <md-card-title>{{providerB.name}}</md-card-title>
+      <md-card-subtitle *ngIf="providerB.description">{{providerB.description}}</md-card-subtitle>
     </md-card-header>
     <md-card-content>
-      <items-list [items]="green" (onSelect)="chips.modifyItems($event)"></items-list>
+      <items-list [items]="providerB.dishes" (onSelect)="chips.modifyItems($event)"></items-list>
     </md-card-content>
   </md-card>
 

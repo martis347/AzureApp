@@ -6,8 +6,8 @@ import {Observable} from "rxjs/Observable";
 export class ProvidersService {
   constructor(private http: Http) { }
 
-  public GetProviders(): Observable<any> {
-    let result = this.http.get("http://localhost:15338/api/providers");
+  public GetProviders(date: string): Observable<any> {
+    let result = this.http.get("http://localhost:15338/api/providers/" + date);
 
     return result;
   }

@@ -8,9 +8,10 @@ import {DishType} from "../../../../models/DishType.enum";
 })
 
 export class SelectedChipsComponent {
-  @Output() price: EventEmitter <number> = new EventEmitter();
+  @Output() selection: EventEmitter <any> = new EventEmitter();
 
   private items: any[] = [];
+  private price: number = 0;
   private combinedSelected: boolean = false;
   dishTypes: any = DishType;
 
@@ -21,7 +22,7 @@ export class SelectedChipsComponent {
       this.items.push({name: item.mainDishes, dishType: DishType.Main});
       this.items.push({name: item.sideDishes, dishType: DishType.Side});
 
-      this.price.emit(item.price);
+      this.emitSelection(item.price);
     } else {
       if (this.combinedSelected) {
         this.items = [];
@@ -39,18 +40,22 @@ export class SelectedChipsComponent {
         this.items.push(item);
       }
 
-      this.price.emit((this.items[0] ? +this.items[0].price : 0) + (this.items[1] ? +this.items[1].price : 0));
+      this.emitSelection();
     }
   }
 
   removeChip(item) {
     if(this.combinedSelected){
       this.items = [];
-      this.price.emit(0);
+      this.emitSelection();
       this.combinedSelected = false;
     }
     this.items.splice(this.items.indexOf(item), 1);
-    this.price.emit((this.items[0] ? +this.items[0].price : 0) + (this.items[1] ? +this.items[1].price : 0));
+    this.emitSelection();
+  }
+
+  emitSelection(price: number = null){
+    this.selection.emit({price: price || ((this.items[0] ? +this.items[0].price : 0) + (this.items[1] ? +this.items[1].price : 0)), items: this.items});
   }
 
   stripDescription(text){
