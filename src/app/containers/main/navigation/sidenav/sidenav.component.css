@@ -39,9 +39,14 @@ ul {
 }
 
 .settings-panel {
-  display:inline;
   top: 8px;
-  position: relative;
+  width: 100%;
+  display: block;
+}
+
+.settings-panel-arrow {
+  position: absolute;
+  right: 10px;
 }
 
 .settings-panel > span{

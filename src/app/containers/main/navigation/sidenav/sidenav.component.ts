@@ -1,4 +1,5 @@
-import {Component, Output, EventEmitter} from '@angular/core';
+import {Component} from '@angular/core';
+import {StorageService} from "../../../../services/storage.service";
 
 @Component({
   selector: 'sidenav-content',
@@ -7,19 +8,17 @@ import {Component, Output, EventEmitter} from '@angular/core';
 })
 
 export class SidenavComponent {
-  @Output() onDayClick: EventEmitter<Object> = new EventEmitter();
-
-  onDayClickEvent(event): void {
-    this.onDayClick.emit(event);
-  }
-
   showingSettings: boolean = false;
 
   toggleDropdown(): void{
     this.showingSettings = !this.showingSettings;
   }
 
-  constructor() {
+  getUserName(){
+    return this.storage.GetItem('user');
+  }
+
+  constructor(private storage: StorageService) {
   }
 
 

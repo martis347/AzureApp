@@ -61,23 +61,37 @@ export class StepperComponent implements OnInit{
   onSignIn(googleUser){
     this.googleProfile = googleUser;
 
-    if(googleUser.getGrantedScopes().indexOf('spreadsheets.readonly') === -1){
+    if(this.storage.GetItem('user')) {
+      this.onSessionExpired(googleUser);
+    } else {
+      this.onFirstTimeLogin(googleUser);
+    }
+
+  }
+
+  private onFirstTimeLogin(googleUser){
+    if(googleUser.getGrantedScopes().indexOf('spreadsheets.readonly') === -1) {
       let options = new gapi.auth2.SigninOptionsBuilder(
         {'scope': 'email https://www.googleapis.com/auth/spreadsheets.readonly'});
 
       googleUser.grant(options).then(
         function(success){
-          this.storage.AddItem('access_token', gapi.auth2.getAuthInstance().currentUser.get().Zi.access_token);
+          this.storage.AddItem('access_token', googleUser.Zi.access_token);
+          this.stepper.nativeElement.MaterialStepper.next();
 
           console.log(JSON.stringify({message: "success", value: success}));
         },
         function(fail){
           alert(JSON.stringify({message: "fail", value: fail}));
         });
+    } else {
+      this.storage.AddItem('access_token', googleUser.Zi.access_token);
+      this.stepper.nativeElement.MaterialStepper.next();
     }
+  }
 
-    this.storage.AddItem('access_token', gapi.auth2.getAuthInstance().currentUser.get().Zi.access_token);
-    this.stepper.nativeElement.MaterialStepper.next();
+  private onSessionExpired(googleUser){
+    this.storage.AddItem('access_token', googleUser.Zi.access_token);
   }
 
   options = [

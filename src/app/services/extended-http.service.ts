@@ -23,9 +23,9 @@ export class ExtendedHttpService extends Http {
   private catchErrors() {
     return (res: Response) => {
       if (res.status === 401) {
-        console.log("Access_token_expired: redirecting to login.");
+        console.log("Access_token_expired: refreshing site to refresh token.");
         this._storage.RemoveItem('access_token');
-        this._router.navigate(['/setup']);
+        window.location.reload();
       } else if(res.status === 500) {
         res['message'] = 'Server error has occurred, please try again.';
       } else {

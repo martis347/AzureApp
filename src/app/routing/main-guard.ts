@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import {StorageService} from "../services/storage.service";
 
-
 @Injectable()
 export class MainGuard implements CanActivate {
 
@@ -10,7 +9,7 @@ export class MainGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.storage.GetItem('access_token')) {
-      return true;
+        return true;
     }
 
     this.router.navigate(['/setup']);

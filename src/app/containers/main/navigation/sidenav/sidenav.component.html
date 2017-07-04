@@ -5,12 +5,12 @@
     <br>
 
     <div md-raised-button class="app-icon-button settings-panel" (click)="toggleDropdown()">
-      <span><i>Martynas Kanapinskas</i></span>
-      <div *ngIf="showingSettings">
+      <span>{{getUserName()}}</span>
+      <div class="settings-panel-arrow" *ngIf="showingSettings">
         <img src="https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/arrow-down.png"
              class="user-menu-icon"/>
       </div>
-      <div *ngIf="!showingSettings">
+      <div class="settings-panel-arrow" *ngIf="!showingSettings">
         <img src="https://raw.githubusercontent.com/martis347/AzureApp/master/src/resources/arrow-up.png"
              class="user-menu-icon"/>
       </div>

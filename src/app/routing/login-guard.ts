@@ -5,8 +5,6 @@ import {Constants} from "../misc/constants";
 import {Utilities} from "../misc/utilities";
 import {StorageService} from "../services/storage.service";
 
-declare let gapi: any;
-
 @Injectable()
 export class LoginGuard implements CanActivate {
 
