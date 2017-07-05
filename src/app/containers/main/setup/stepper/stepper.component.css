@@ -9,3 +9,10 @@
 .mdl-stepper {
   margin:auto;
 }
+md-spinner {
+  width: 1.5em;
+  height: 1.5em;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

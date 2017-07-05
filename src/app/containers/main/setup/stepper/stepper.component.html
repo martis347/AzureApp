@@ -20,13 +20,15 @@
               </span>
             </span>
           <div class="mdl-step__content">
+
             <md-input-container>
-              <input type="text" mdInput [formControl]="myControl" [mdAutocomplete]="auto" placeholder="Name">
+              <input #nameInput mdInput [formControl]="myControl" [mdAutocomplete]="auto" placeholder="Name" [disabled]="loadingPeople">
+              <md-spinner class="app-spinner" *ngIf="loadingPeople"></md-spinner>
             </md-input-container>
 
-            <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayFn">
+            <md-autocomplete #auto="mdAutocomplete">
               <md-option *ngFor="let option of filteredOptions | async" [value]="option">
-                {{ option.name }}
+                {{ option }}
               </md-option>
             </md-autocomplete>
           </div>

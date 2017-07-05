@@ -8,7 +8,7 @@ export class MainGuard implements CanActivate {
   constructor(private router: Router, private storage: StorageService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.storage.GetItem('access_token')) {
+    if (this.storage.GetItem('access_token') && this.storage.GetItem('user')) {
         return true;
     }
 
