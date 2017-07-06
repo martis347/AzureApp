@@ -26,12 +26,13 @@
 </div>
 
 <div *ngIf="!isCategorized">
-  <md-nav-list>
+  <md-nav-list dense>
     <div *ngFor="let item of itemsByCategory(category)">
       <a md-list-item (click)="onItemClick(item)">
         <img md-list-avatar [src]="getItemImage(item)">
         <span md-line>{{ item.name }}</span>
-        <span md-line class="demo-secondary-text"> {{ item.count }} </span>
+        <span md-line class="demo-secondary-text" *ngIf="item.price === 0"> {{ item.count }} </span>
+        <span md-line class="demo-secondary-text" *ngIf="item.price !== 0"> {{ item.price | currency:'EUR':true:'1.2-2'}} </span>
       </a>
     </div>
   </md-nav-list>
