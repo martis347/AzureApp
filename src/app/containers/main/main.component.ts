@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {Hammer} from "hammerjs";
-import {MdSidenav} from "@angular/material";
+import {MdSidenav, MdSnackBar} from "@angular/material";
 import {ContentComponent} from "app/containers/main/content/content.component";
 
 @Component({
@@ -10,11 +10,23 @@ import {ContentComponent} from "app/containers/main/content/content.component";
 })
 
 export class MainComponent {
+  constructor(private snackBar: MdSnackBar) {}
   @ViewChild(MdSidenav) sidenav : MdSidenav;
   @ViewChild(ContentComponent) content : ContentComponent;
+  isSavingOrder: boolean;
 
   onCheckClick: Function = () => {
-    this.content.onConfirmClick();
+    this.isSavingOrder = true;
+
+    const onDone = () => {
+      this.isSavingOrder = false;
+    };
+
+    const onError = () => {
+      this.snackBar.open('An error has occurred while processing your order.', 'OK');
+    };
+
+    this.content.onConfirmClick(onDone, onError);
   };
 
   onSwipeLeft(){

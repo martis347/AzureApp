@@ -5,6 +5,9 @@ import {MdSnackBar} from "@angular/material";
 import {ProvidersService} from "app/services/api/providers.service";
 import * as moment from 'moment';
 import {Provider} from "../../../models/Provider";
+import {DishesService} from "../../../services/api/dishes.service";
+import {DishType} from "../../../models/DishType.enum";
+import {StorageService} from "../../../services/storage.service";
 
 @Component({
   selector: 'app-content',
@@ -21,7 +24,7 @@ export class ContentComponent {
   providerA: Provider;
   providerB: Provider;
 
-  constructor(private activatedRoute: ActivatedRoute, private snackBar: MdSnackBar, private providersService: ProvidersService) {
+  constructor(private activatedRoute: ActivatedRoute, private snackBar: MdSnackBar, private providersService: ProvidersService, private dishesService: DishesService, private storageService: StorageService) {
     this.activatedRoute.params.subscribe(params => {
       this.currentDay = params['date'];
       this.updateProviders();
@@ -48,7 +51,39 @@ export class ContentComponent {
     this.selection = newSelection;
   }
 
-  public onConfirmClick() {
-    this.snackBar.open('Successfully Ordered ' + this.selection.items[0].name + (this.selection.items[1] ? ' & ' + this.selection.items[1].name : '') + ' for ' + this.selection.price + '€', 'OK', {duration: 10000} );
+  public onConfirmClick(onDone, onError) {
+    const mainDish = this.selection.items.find(i => i.dishType === DishType.Main);
+    const sideDish = this.selection.items.find(i => i.dishType === DishType.Side);
+
+    const mainDishObject = mainDish ? {
+      name: mainDish.name,
+      provider: mainDish.providerName
+    } : null;
+
+    const sideDishObject = sideDish ? {
+      name: sideDish.name,
+      provider: sideDish.providerName
+    } : null;
+
+    const orderObservable = this.dishesService.OrderDish(moment(this.currentDay).format('dddd'), {
+      price: this.selection.price,
+      mainDish: mainDishObject,
+      sideDish: sideDishObject,
+      username: this.storageService.GetItem('user')
+    });
+
+    orderObservable
+      .finally(onDone)
+      .subscribe(() => {
+      if(this.selection.items.length === 0) {
+        this.snackBar.open('Successfully cleared your order.', 'OK', {duration: 10000} );
+
+      } else {
+
+      }
+      this.snackBar.open('Successfully Ordered ' + this.selection.items[0].name + (this.selection.items[1] ? ' & ' + this.selection.items[1].name : '') + ' for ' + this.selection.price + '€', 'OK', {duration: 10000} );
+    }, onError);
+
+    return orderObservable;
   }
 }

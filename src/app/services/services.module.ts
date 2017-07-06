@@ -6,6 +6,7 @@ import {ExtendedHttpService} from "./extended-http.service";
 import {StorageService} from "./storage.service";
 import {PeopleService} from "./api/people.service";
 import {NotificationsService} from "./notifications.service";
+import {DishesService} from "./api/dishes.service";
 
 @NgModule({
   providers: [
@@ -15,7 +16,8 @@ import {NotificationsService} from "./notifications.service";
     ProvidersService,
     ExtendedHttpService,
     StorageService,
-    NotificationsService
+    NotificationsService,
+    DishesService
   ],
 })
 

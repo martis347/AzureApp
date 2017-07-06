@@ -19,8 +19,8 @@ export class SelectedChipsComponent {
     if (item.dishType === DishType.Combined) {
       this.items = [];
       this.combinedSelected = true;
-      this.items.push({name: item.mainDishes, dishType: DishType.Main});
-      this.items.push({name: item.sideDishes, dishType: DishType.Side});
+      this.items.push({name: item.mainDishes, dishType: DishType.Main, providerName: item.providerName});
+      this.items.push({name: item.sideDishes, dishType: DishType.Side, providerName: item.providerName});
 
       this.emitSelection(item.price);
     } else {
