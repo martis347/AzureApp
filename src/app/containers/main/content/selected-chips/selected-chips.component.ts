@@ -44,6 +44,12 @@ export class SelectedChipsComponent {
     }
   }
 
+  public reset() {
+    this.items = [];
+    this.price = 0;
+    this.combinedSelected = false;
+  }
+
   removeChip(item) {
     if(this.combinedSelected){
       this.items = [];

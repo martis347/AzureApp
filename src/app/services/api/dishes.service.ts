@@ -12,4 +12,10 @@ export class DishesService {
 
     return result;
   }
+
+  public GetOrderedDishes(date: string, username: string): Observable<any> {
+    let result = this.http.get(Utilities.GetApiUrl() + 'dishes/' + date + '/' + username);
+
+    return result;
+  }
 }

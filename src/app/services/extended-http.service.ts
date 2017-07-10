@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import {Request, XHRBackend, RequestOptions, Response, Http, RequestOptionsArgs} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router';
 import { StorageService } from './storage.service';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class ExtendedHttpService extends Http {
-  constructor(private backend: XHRBackend, private defaultOptions: RequestOptions, private _router: Router, private _storage: StorageService) {
+  constructor(private backend: XHRBackend, private defaultOptions: RequestOptions, private _storage: StorageService) {
     super(backend, defaultOptions);
   }
 

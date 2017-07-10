@@ -7,6 +7,7 @@ import {StorageService} from "./storage.service";
 import {PeopleService} from "./api/people.service";
 import {NotificationsService} from "./notifications.service";
 import {DishesService} from "./api/dishes.service";
+import {OrderStateService} from "./order-state.service";
 
 @NgModule({
   providers: [
@@ -17,7 +18,8 @@ import {DishesService} from "./api/dishes.service";
     ExtendedHttpService,
     StorageService,
     NotificationsService,
-    DishesService
+    DishesService,
+    OrderStateService
   ],
 })
 

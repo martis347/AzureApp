@@ -10,7 +10,7 @@
 </md-sidenav-container>
 
 <span class="app-action">
-  <button md-fab (click)="onCheckClick()" *ngIf="!isSavingOrder"><i class="material-icons app-toolbar-menu check-circle">check circle</i></button>
+  <button [disabled]="canOrder()" md-fab (click)="onCheckClick()" *ngIf="!isSavingOrder"><i class="material-icons app-toolbar-menu check-circle">check circle</i></button>
   <md-spinner class="app-spinner" color="accent" *ngIf="isSavingOrder"></md-spinner>
 
 </span>
