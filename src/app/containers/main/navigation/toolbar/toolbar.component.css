@@ -1,0 +1,8 @@
+.feedback {
+  position: absolute;
+  right: 20px;
+}
+
+md-toolbar {
+  position: relative;
+}

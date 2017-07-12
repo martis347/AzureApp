@@ -1,8 +1,9 @@
 import {Component, Input} from '@angular/core';
-import {MdSidenav} from '@angular/material';
+import {MdDialog, MdSidenav} from '@angular/material';
 import {Utilities} from "../../../../misc/utilities";
 import {ActivatedRoute} from "@angular/router";
-import * as moment from 'moment';
+import {FeedbackComponent} from "../../modals/feedback/feedback.component";
+import {FeedbackService} from "../../../../services/api/feedback.service";
 
 @Component({
   selector: 'toolbar',
@@ -13,22 +14,20 @@ import * as moment from 'moment';
 export class ToolbarComponent {
   @Input() sidenav: MdSidenav;
   @Input() text: string;
-  weeksAhead: number = 0;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute, public dialog: MdDialog, private feedbackService: FeedbackService) {
     if (!this.text) {
       this.activatedRoute.params.subscribe(params => {
         this.text = Utilities.GetDisplayFormat(params['date']);
-        this.weeksAhead = moment(params['date']).diff(moment().startOf('isoWeek'), 'weeks');
-
-        if(this.weeksAhead !== 0) {
-          if(Math.abs(this.weeksAhead) === 1){
-            this.text += ' (' + Math.abs(this.weeksAhead) + ' week ' + (this.weeksAhead > 0 ? 'ahead' : 'behind') + ')';
-          } else {
-            this.text += ' (' + Math.abs(this.weeksAhead) + ' weeks ' + (this.weeksAhead > 0 ? 'ahead' : 'behind') + ')';
-          }
-        }
       });
     }
+  }
+
+  onFeedback = () => {
+    let dialogRef = this.dialog.open(FeedbackComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.feedbackService.sendFeedback(result).subscribe();
+      console.log(result);
+    });
   }
 }

@@ -41,7 +41,7 @@
         <md-card-subtitle *ngIf="providerA.description">{{providerA.description}}</md-card-subtitle>
       </md-card-header>
       <md-card-content>
-        <items-list [items]="providerA.dishes" (onSelect)="chips.modifyItems($event)"></items-list>
+        <items-list [items]="providerA.dishes" [canOrder]="canOrder()" (onSelect)="chips.modifyItems($event)"></items-list>
       </md-card-content>
   </md-card>
 
@@ -51,7 +51,7 @@
       <md-card-subtitle *ngIf="providerB.description">{{providerB.description}}</md-card-subtitle>
     </md-card-header>
     <md-card-content>
-      <items-list [items]="providerB.dishes" (onSelect)="chips.modifyItems($event)"></items-list>
+      <items-list [items]="providerB.dishes" [canOrder]="canOrder()" (onSelect)="chips.modifyItems($event)"></items-list>
     </md-card-content>
   </md-card>
 

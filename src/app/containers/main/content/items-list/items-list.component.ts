@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {Dish} from "../../../../models/Dish";
 import {DishType} from "../../../../models/DishType.enum";
+import {OrderStateService} from "../../../../services/order-state.service";
 
 @Component({
   selector: 'items-list',
@@ -10,6 +11,7 @@ import {DishType} from "../../../../models/DishType.enum";
 
 export class ItemsListComponent implements OnInit{
   @Input() public items: any[] = [];
+  @Input() public canOrder: boolean;
   @Output() public onSelect: EventEmitter<any> = new EventEmitter();
 
   isCategorized: boolean;
@@ -91,9 +93,5 @@ export class ItemsListComponent implements OnInit{
       this.categories = this.items.map(item => {return item.category}).filter(this.onlyUnique);
       this.displayedCategories = [this.categories[0]]
     }
-  }
-
-  constructor(){
-
   }
 }

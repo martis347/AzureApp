@@ -1,0 +1,33 @@
+<h1 md-dialog-title>Feedback About This Application</h1>
+<div md-dialog-content>
+  <md-checkbox #checkbox
+    class="example-margin"
+    [indeterminate]="true">
+    I Like This Idea!
+  </md-checkbox>
+  <br>
+  <div class="slider">
+    <p>Design rating</p>
+    <md-slider #designValue
+      class="example-margin"
+      [max]="100"
+      [min]="0"
+      [step]="1"
+      [thumb-label]="true"
+      [vertical]="false">
+    </md-slider>
+  </div>
+  <br>
+  <md-input-container class="comment">
+    <textarea #comment mdInput placeholder="Comment"></textarea>
+  </md-input-container>
+</div>
+
+<div md-dialog-actions >
+  <div class="buttons">
+    <button md-button color="primary" [md-dialog-close]="onSubmit()">Submit</button>
+    <button md-button md-dialog-close="Cancel">Cancel</button>
+  </div>
+</div>
+
+

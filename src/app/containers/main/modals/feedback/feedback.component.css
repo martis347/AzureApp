@@ -1,0 +1,11 @@
+.slider > p{
+  display: inline-block;
+}
+
+.comment {
+  width:100%;
+}
+
+.buttons {
+  margin:auto;
+}

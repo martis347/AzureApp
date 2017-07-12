@@ -1,73 +1,28 @@
 <section class="mdl-stepper-demo">
-  <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--12-col">
-      <ul class="mdl-stepper mdl-stepper--linear" id="demo-error-state" #stepper>
-        <li class="mdl-step">
-            <span class="mdl-step__label">
-              <span class="mdl-step__title">
-                <span class="mdl-step__title-text">Sign In To Google Account</span>
-                <span class="mdl-step__title-message">That Is Required For Google Authorization</span>
-              </span>
-            </span>
-          <div class="mdl-step__actions">
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
-          </div>
-        </li>
-        <li class="mdl-step">
-            <span class="mdl-step__label">
-              <span class="mdl-step__title">
-                <span class="mdl-step__title-text">Grant Access to Read/Edit Google Sheets</span>
-                <span class="mdl-step__title-message">That Is Required To Read and Edit Google Sheets on behalf of you</span>
-              </span>
-            </span>
-          <div class="mdl-step__actions">
-            <button md-raised-button color="primary" (click)="onAccessGrant()">Grant Access</button>
-          </div>
-        </li>
-        <li class="mdl-step mdl-step--editable">
-            <span class="mdl-step__label">
-              <span class="mdl-step__title">
-                <span class="mdl-step__title-text">Find Your Name</span>
-              </span>
-            </span>
-          <div class="mdl-step__content">
+  <md-card class="info-card">
+    <h1>Hello There!</h1>
+    <p>The purpose of this application is to advance the process of ordering lunch.</p>
+    <p>Since this application is directly editing google spreadsheets, there are some limitations, <b>so please keep in mind</b>:</p>
+    <ul>
+      <li>Your name must be consistent between all sheets, <b>that is important!</b></li>
+      <li>The software has not been fully tested and might contain bugs, so please <i>double check</i> your order in google sheets</li>
+      <li>Your are allowed to edit until 11 AM of current day. You may also fill further days of current week.</li>
+      <li>Your Document is edited on behalf of you, so it reflects in history of Google spreadsheets. By saying that, I mean <b> don't mess with other peoples names. </b></li>
+    </ul>
+    <br>
+    <section>
+      <md-progress-bar
+        class="example-margin"
+        [color]="'primary'"
+        [mode]="'determinate'"
+        [value]="percentLoaded">
+      </md-progress-bar>
+    </section>
+    <br>
+    <section [hidden]="percentLoaded < 100" class="start-button">
+      <button md-raised-button color="primary" (click)="start()">Get Started</button>
+    </section>
+  </md-card >
 
-            <md-input-container>
-              <input #nameInput mdInput [formControl]="myControl" [mdAutocomplete]="auto" placeholder="Name" [disabled]="loadingPeople">
-              <md-spinner class="app-spinner" *ngIf="loadingPeople"></md-spinner>
-            </md-input-container>
-
-            <md-autocomplete #auto="mdAutocomplete">
-              <md-option *ngFor="let option of filteredOptions | async" [value]="option">
-                {{ option }}
-              </md-option>
-            </md-autocomplete>
-          </div>
-          <div class="mdl-step__actions">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised" data-stepper-next (click)="onNext()">
-              Continue
-            </button>
-          </div>
-        </li>
-        <li class="mdl-step">
-            <span class="mdl-step__label">
-              <span class="mdl-step__title">
-                <span class="mdl-step__title-text">Save</span>
-              </span>
-            </span>
-          <div class="mdl-step__content">
-            <h5>You're All Set Up!</h5>
-          </div>
-          <div class="mdl-step__actions">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised" data-stepper-next (click)="onDone()">
-              Done
-            </button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-cancel (click)="onBack()">
-              Back
-            </button>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <stepper-content [hidden]="!showStepper"></stepper-content>
 </section>

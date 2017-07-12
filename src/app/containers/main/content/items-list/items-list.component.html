@@ -10,12 +10,12 @@
     </a>
     <div *ngIf="displayedCategories.indexOf(category) !== -1">
       <div *ngFor="let item of itemsByCategory(category)">
-        <a md-list-item (click)="onItemClick(item)" *ngIf="!item.sideDishes || item.sideDishes.length < 2">
+        <a md-list-item (click)="onItemClick(item)" *ngIf="!item.sideDishes || item.sideDishes.length < 2 || canOrder" [disableRipple]="canOrder">
             <img md-list-avatar [src]="getItemImage(item)">
             <span md-line>{{ item.name }}</span>
             <span md-line class="demo-secondary-text"> {{ item.price | currency:'EUR':true:'1.2-2'}} </span>
         </a>
-        <a md-list-item (click)="onItemClick(item)" *ngIf="item.sideDishes && item.sideDishes.length > 1" [mdMenuTriggerFor]="menu">
+        <a md-list-item (click)="onItemClick(item)" *ngIf="item.sideDishes && item.sideDishes.length > 1 && !canOrder" [mdMenuTriggerFor]="menu">
           <img md-list-avatar [src]="getItemImage(item)">
           <span md-line>{{ item.name }}</span>
           <span md-line class="demo-secondary-text"> {{ item.price | currency:'EUR':true:'1.2-2'}} </span>
@@ -28,7 +28,7 @@
 <div *ngIf="!isCategorized">
   <md-nav-list dense>
     <div *ngFor="let item of itemsByCategory(category)">
-      <a md-list-item (click)="onItemClick(item)">
+      <a md-list-item (click)="onItemClick(item)" [disableRipple]="canOrder">
         <img md-list-avatar [src]="getItemImage(item)">
         <span md-line>{{ item.name }}</span>
         <span md-line class="demo-secondary-text" *ngIf="item.price === 0"> {{ item.count }} </span>
@@ -43,4 +43,3 @@
     <button md-menu-item>{{item}}</button>
   </div>
 </md-menu>
-

@@ -1,18 +1,9 @@
-.mdl-step.is-active {
-  height: 200px;
+md-card {
+  max-width: 720px;
+  margin: 20px auto;
 }
 
-.mdl-step.is-active:first-child {
-  height: 140px;
-}
-
-.mdl-stepper {
-  margin:auto;
-}
-md-spinner {
-  width: 1.5em;
-  height: 1.5em;
-  position: absolute;
-  right: 0;
-  top: 0;
+.start-button {
+  position: relative;
+  right:0;
 }

@@ -8,6 +8,7 @@ import {PeopleService} from "./api/people.service";
 import {NotificationsService} from "./notifications.service";
 import {DishesService} from "./api/dishes.service";
 import {OrderStateService} from "./order-state.service";
+import {FeedbackService} from "./api/feedback.service";
 
 @NgModule({
   providers: [
@@ -19,7 +20,8 @@ import {OrderStateService} from "./order-state.service";
     StorageService,
     NotificationsService,
     DishesService,
-    OrderStateService
+    OrderStateService,
+    FeedbackService
   ],
 })
 

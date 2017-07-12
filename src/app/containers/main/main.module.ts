@@ -10,6 +10,8 @@ import {StepperComponent} from "./setup/stepper/stepper.component";
 import {MDModule} from "../../misc/material-design.module";
 import {SetupComponent} from "./setup/setup.component";
 import {WeekChangingModal} from "./modals/week-changing/week-changing.component";
+import {StepperContentComponent} from "./setup/stepper/stepper-content.component";
+import {FeedbackComponent} from "./modals/feedback/feedback.component";
 
 @NgModule({
   imports: [
@@ -24,14 +26,15 @@ import {WeekChangingModal} from "./modals/week-changing/week-changing.component"
     ToolbarComponent,
     MenuItemsComponent,
     StepperComponent,
+    StepperContentComponent,
     SetupComponent,
-    WeekChangingModal
-
+    WeekChangingModal,
+    FeedbackComponent
   ],
   exports: [
     MainComponent
   ],
-  entryComponents: [WeekChangingModal]
+  entryComponents: [WeekChangingModal, FeedbackComponent]
 })
 export class MainModule {
 }

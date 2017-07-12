@@ -1,9 +1,10 @@
-<md-toolbar color="primary">
+<md-toolbar color="primary" >
 
   <button class="app-icon-button" (click)="sidenav.toggle()" *ngIf="sidenav">
     <i class="material-icons app-toolbar-menu">menu</i>
   </button>
 
-  {{text}}
+  <h4>{{text}}</h4>
+  <div class="feedback" (click)="onFeedback()"><button md-button>Feedback</button></div>
 
 </md-toolbar>
