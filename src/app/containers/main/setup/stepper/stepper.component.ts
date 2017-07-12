@@ -64,36 +64,35 @@ export class StepperComponent implements OnInit{
     if(this.storage.GetItem('user')) {
       this.onSessionExpired(googleUser);
     } else {
-      this.onFirstTimeLogin(googleUser).subscribe(() => {
-        this.loadingPeople = true;
-        this.peopleService.GetPeople()
-          .finally(() => {
-            this.loadingPeople = false;
-          })
-          .subscribe(people => {
-            this.options = people.json().map(p => p.displayName);
-            const name = this.googleProfile.getBasicProfile().getGivenName();
-            this.myControl.setValue(name, {emitEvent: true});
-            this.filteredOptions = this.myControl.valueChanges
-              .startWith(name)
-              .map(name => name ? this.filter(name) : this.options.slice());
-          });
-      });
-
+      this.stepper.nativeElement.MaterialStepper.next();
     }
   }
 
-  private onFirstTimeLogin(googleUser){
-    if(googleUser.getGrantedScopes().indexOf('spreadsheets') === -1) {
+  public onAccessGrant() {
+    const loadPeople = () => {
+      this.loadingPeople = true;
+      this.peopleService.GetPeople()
+        .finally(() => {
+          this.loadingPeople = false;
+        })
+        .subscribe(people => {
+          this.options = people.json().map(p => p.displayName);
+          const name = this.googleProfile.getBasicProfile().getGivenName();
+          this.myControl.setValue(name, {emitEvent: true});
+          this.filteredOptions = this.myControl.valueChanges
+            .startWith(name)
+            .map(name => name ? this.filter(name) : this.options.slice());
+        });
+    };
+
+    if(this.googleProfile.getGrantedScopes().indexOf('spreadsheets') === -1) {
       let options = new gapi.auth2.SigninOptionsBuilder(
         {'scope': 'email https://www.googleapis.com/auth/spreadsheets'});
 
-      return Observable.create(observer => {
-        googleUser.grant(options).then(success => {
-            this.storage.AddItem('access_token', googleUser.Zi.access_token);
+        this.googleProfile.grant(options).then(() => {
+            this.storage.AddItem('access_token', this.googleProfile.Zi.access_token);
             this.stepper.nativeElement.MaterialStepper.next();
-            console.log(JSON.stringify({message: "success", value: success}));
-            observer.next();
+            loadPeople();
           },
           fail => {
             if(fail.error === 'popup_blocked_by_browser') {
@@ -102,13 +101,10 @@ export class StepperComponent implements OnInit{
               this.notificationsService.Notify(fail.error);
             }
           });
-      });
     } else {
-      return Observable.create(observer => {
-        this.storage.AddItem('access_token', googleUser.Zi.access_token);
+        this.storage.AddItem('access_token', this.googleProfile.Zi.access_token);
         this.stepper.nativeElement.MaterialStepper.next();
-        observer.next();
-      });
+        loadPeople();
     }
   }
 

@@ -6,11 +6,22 @@
             <span class="mdl-step__label">
               <span class="mdl-step__title">
                 <span class="mdl-step__title-text">Sign In To Google Account</span>
-                <span class="mdl-step__title-message">That Is Required For Google Sheets Authorization</span>
+                <span class="mdl-step__title-message">That Is Required For Google Authorization</span>
               </span>
             </span>
           <div class="mdl-step__actions">
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
+          </div>
+        </li>
+        <li class="mdl-step">
+            <span class="mdl-step__label">
+              <span class="mdl-step__title">
+                <span class="mdl-step__title-text">Grant Access to Read/Edit Google Sheets</span>
+                <span class="mdl-step__title-message">That Is Required To Read and Edit Google Sheets on behalf of you</span>
+              </span>
+            </span>
+          <div class="mdl-step__actions">
+            <button md-raised-button color="primary" (click)="onAccessGrant()">Grant Access</button>
           </div>
         </li>
         <li class="mdl-step mdl-step--editable">

@@ -16,11 +16,11 @@ export class MenuItemsComponent implements OnInit{
   @Input() showingSettings: boolean;
   startingWeek: Moment;
   days: Object[] = [
-    {'id': 0, 'displayName': 'Pirmadienis'},
-    {'id': 1, 'displayName': 'Antradienis'},
-    {'id': 2, 'displayName': 'Trečiadienis'},
-    {'id': 3, 'displayName': 'Ketvirtadienis'},
-    {'id': 4, 'displayName': 'Penktadienis'}
+    {'id': 0, 'displayName': 'Monday'},
+    {'id': 1, 'displayName': 'Tuesday'},
+    {'id': 2, 'displayName': 'Wednesday'},
+    {'id': 3, 'displayName': 'Thursday'},
+    {'id': 4, 'displayName': 'Friday'}
   ];
 
   onClick(day): void {
