@@ -1,4 +1,4 @@
-import {Component, ViewChild, ElementRef, NgZone, OnInit} from '@angular/core';
+import {Component, ViewChild, ElementRef, NgZone} from '@angular/core';
 import {Observable} from "rxjs";
 import {FormControl} from "@angular/forms";
 import {Router} from "@angular/router";
@@ -68,16 +68,14 @@ export class StepperContentComponent {
     const loadPeople = () => {
       this.loadingPeople = true;
       this.peopleService.GetPeople()
-        .finally(() => {
-          this.loadingPeople = false;
-        })
         .subscribe(people => {
           this.options = people.json().map(p => p.displayName);
           const name = this.googleProfile.getBasicProfile().getGivenName();
           this.myControl.setValue(name, {emitEvent: true});
           this.filteredOptions = this.myControl.valueChanges
-            .startWith(name)
             .map(name => name ? this.filter(name) : this.options.slice());
+        }, null, () => {
+          this.loadingPeople = false;
         });
     };
 

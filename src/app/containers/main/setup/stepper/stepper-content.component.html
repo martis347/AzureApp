@@ -32,7 +32,7 @@
         <div class="mdl-step__content">
 
           <md-input-container>
-            <input #nameInput mdInput [formControl]="myControl" [mdAutocomplete]="auto" placeholder="Name" [disabled]="loadingPeople">
+            <input #nameInput mdInput [formControl]="myControl" [mdAutocomplete]="auto" placeholder="Name">
             <md-spinner class="app-spinner" *ngIf="loadingPeople"></md-spinner>
           </md-input-container>
 

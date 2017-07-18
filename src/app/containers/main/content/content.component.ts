@@ -47,27 +47,27 @@ export class ContentComponent {
     this.providerA = null;
     this.providerB = null;
     this.loadingProviders = true;
-    this.providersService.GetProviders(this.currentDay)
-      .finally(() => this.loadingProviders = false)
-      .subscribe(
-        response => {
-          let providers: any[] = response.json();
-          this.providerA = providers[0];
-          this.providerB = providers[1];
-        },
-        error => {
-          this.snackBar.open(error.message, 'OK');
-        });
+    this.providersService.GetProviders(this.currentDay).subscribe(
+      response => {
+        let providers: any[] = response.json();
+        this.providerA = providers[0];
+        this.providerB = providers[1];
+      },
+      error => {
+        this.snackBar.open(error.message, 'OK');
+      },
+      () => {
+        this.loadingProviders = false
+      });
   }
 
   private updateCurrentOrder() {
     this.loadingCurrentOrder = true;
     this.dishesService.GetOrderedDishes(this.currentDay, this.storageService.GetItem('user'))
-      .finally(() => {
-        this.loadingCurrentOrder = false;
-      })
       .subscribe(result => {
         this.currentOrder = result.json();
+      }, null, () => {
+        this.loadingCurrentOrder = false;
       });
   }
 
@@ -78,7 +78,6 @@ export class ContentComponent {
   public onConfirmClick(onDone, onError) {
     const mainDish = this.selection.items.find(i => i.dishType === DishType.Main);
     const sideDish = this.selection.items.find(i => i.dishType === DishType.Side);
-
     const mainDishObject = mainDish ? {
       name: mainDish.name,
       provider: mainDish.providerName
@@ -96,9 +95,7 @@ export class ContentComponent {
       username: this.storageService.GetItem('user')
     });
 
-    orderObservable
-      .finally(onDone)
-      .subscribe(() => {
+    orderObservable.subscribe(() => {
       if(this.selection.items.length === 0) {
         this.snackBar.open('Successfully cleared your order.', 'OK', {duration: 10000} );
 
@@ -108,7 +105,7 @@ export class ContentComponent {
       this.updateCurrentOrder();
       this.chips.reset();
       this.selection = {price: 0, items: []};
-    }, onError);
+    }, onError, onDone);
 
     return orderObservable;
   }
