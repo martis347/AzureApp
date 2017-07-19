@@ -15,7 +15,7 @@ export class Utilities {
 
   public static GetApiUrl() {
     if(environment.production) {
-      return 'http://besmart1-api.azurewebsites.net/api/';
+      return 'https://besmart1-api.azurewebsites.net/api/';
     } else {
       return 'http://localhost:15338/api/';
     }
