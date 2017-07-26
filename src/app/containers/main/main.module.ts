@@ -12,6 +12,8 @@ import {SetupComponent} from "./setup/setup.component";
 import {WeekChangingModal} from "./modals/week-changing/week-changing.component";
 import {StepperContentComponent} from "./setup/stepper/stepper-content.component";
 import {FeedbackComponent} from "./modals/feedback/feedback.component";
+import {SignInComponent} from "./setup/sign-in/sign-in.component";
+import {NameChangingComponent} from "./modals/name-changing/name-changing.component";
 
 @NgModule({
   imports: [
@@ -29,12 +31,14 @@ import {FeedbackComponent} from "./modals/feedback/feedback.component";
     StepperContentComponent,
     SetupComponent,
     WeekChangingModal,
-    FeedbackComponent
+    FeedbackComponent,
+    SignInComponent,
+    NameChangingComponent
   ],
   exports: [
     MainComponent
   ],
-  entryComponents: [WeekChangingModal, FeedbackComponent]
+  entryComponents: [WeekChangingModal, FeedbackComponent, NameChangingComponent]
 })
 export class MainModule {
 }

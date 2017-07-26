@@ -6,6 +6,11 @@ import {Utilities} from "../../../../misc/utilities";
 import {StorageService} from "app/services/storage.service";
 import {PeopleService} from "../../../../services/api/people.service";
 import {NotificationsService} from "../../../../services/notifications.service";
+import {MdDialog} from "@angular/material";
+import {SignInComponent} from "../sign-in/sign-in.component";
+
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/map';
 
 declare const gapi: any;
 
@@ -28,7 +33,7 @@ export class StepperContentComponent {
     return this.options.filter(option => new RegExp(`^${name}`, 'gi').test(option));
   }
 
-  constructor(ngZone: NgZone, private router: Router, private storage: StorageService, private peopleService: PeopleService, private notificationsService: NotificationsService) {
+  constructor(ngZone: NgZone, private router: Router, private storage: StorageService, private peopleService: PeopleService, private notificationsService: NotificationsService, private dialog: MdDialog) {
     window['onSignIn'] = (googleUser) => ngZone.run(() => this.onSignIn(googleUser));
   }
 
@@ -57,11 +62,7 @@ export class StepperContentComponent {
 
   onSignIn(googleUser){
     this.googleProfile = googleUser;
-    if(this.storage.GetItem('user')) {
-      this.onSessionExpired(googleUser);
-    } else {
-      this.stepper.nativeElement.MaterialStepper.next();
-    }
+    this.stepper.nativeElement.MaterialStepper.next();
   }
 
   public onAccessGrant() {
@@ -73,6 +74,7 @@ export class StepperContentComponent {
           const name = this.googleProfile.getBasicProfile().getGivenName();
           this.myControl.setValue(name, {emitEvent: true});
           this.filteredOptions = this.myControl.valueChanges
+            .startWith(null)
             .map(name => name ? this.filter(name) : this.options.slice());
         }, null, () => {
           this.loadingPeople = false;
@@ -100,9 +102,5 @@ export class StepperContentComponent {
       this.stepper.nativeElement.MaterialStepper.next();
       loadPeople();
     }
-  }
-
-  private onSessionExpired(googleUser){
-    this.storage.AddItem('access_token', googleUser.Zi.access_token);
   }
 }

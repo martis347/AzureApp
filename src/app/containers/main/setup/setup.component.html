@@ -1,25 +1,7 @@
 <md-sidenav-container>
   <toolbar [text]="'Devbridge Lunch App'"></toolbar>
   <div class="app-content">
-    <md-card [hidden]="!hideStepper">
-      <md-card-header>
-        <md-card-title>It looks like your session has expired...</md-card-title>
-        <md-card-subtitle>Let me take care of everything.</md-card-subtitle>
-      </md-card-header>
-      <md-card-content>
-        <section>
-          <md-progress-bar
-            class="example-margin"
-            [color]="'primary'"
-            [mode]="'determinate'"
-            [value]="value">
-          </md-progress-bar>
-        </section>
-      </md-card-content>
-    </md-card>
-
-    <stepper [hidden]="hideStepper"></stepper>
-
+    <stepper></stepper>
   </div>
 
 </md-sidenav-container>

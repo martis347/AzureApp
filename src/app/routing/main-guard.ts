@@ -8,11 +8,17 @@ export class MainGuard implements CanActivate {
   constructor(private router: Router, private storage: StorageService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.storage.GetItem('access_token') && this.storage.GetItem('user')) {
+    if (this.storage.GetItem('user') && this.storage.GetItem('access_token')) {
         return true;
     }
 
-    this.router.navigate(['/setup']);
+    if(this.storage.GetItem('user') && !this.storage.GetItem('access_token')) {
+      this.router.navigate(['/login']);
+    }
+    else if(!this.storage.GetItem('user')) {
+      this.router.navigate(['/setup']);
+    }
+
     return false;
   }
 }

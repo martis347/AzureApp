@@ -1,0 +1,19 @@
+<h1 md-dialog-title>Please select a new name.</h1>
+<div md-dialog-content class="content">
+  <p *ngIf="!data.cancellable">It looks like your name did not match any present names.</p>
+  <p *ngIf="data.cancellable">You orders for current name will not be changed.</p>
+  <md-input-container class="name-input">
+    <input  #nameInput mdInput [formControl]="myControl" [mdAutocomplete]="auto" placeholder="New name">
+    <md-error>
+      Please select a name from given options.
+    </md-error>
+    <md-spinner class="app-spinner" *ngIf="loadingPeople"></md-spinner>
+  </md-input-container>
+  <button class="right" md-button (click)="onSubmit()" [md-dialog-close] [disabled]="!myControl.valid || myControl.pristine">Confirm</button>
+</div>
+
+<md-autocomplete #auto="mdAutocomplete">
+  <md-option *ngFor="let option of filteredOptions | async" [value]="option">
+    {{ option }}
+  </md-option>
+</md-autocomplete>

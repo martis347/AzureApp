@@ -1,13 +1,16 @@
 import {NgModule} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
-import {LoginGuard} from "./login-guard";
+import {SetupGuard} from "./setup-guard";
 import {MainGuard} from "./main-guard";
 import {SetupComponent} from "../containers/main/setup/setup.component";
 import {WeekdayGuard} from "./weekday-guard";
 import {MainComponent} from "../containers/main/main.component";
+import {SignInComponent} from "../containers/main/setup/sign-in/sign-in.component";
+import {LoginGuard} from "./login-guard";
 
 const appRoutes: Routes = [
-  {path: 'setup', component: SetupComponent, canActivate: [LoginGuard]},
+  {path: 'login', component: SignInComponent, canActivate: [LoginGuard]},
+  {path: 'setup', component: SetupComponent, canActivate: [SetupGuard]},
   {path: 'lunch/:date', component: MainComponent, canActivate: [WeekdayGuard, MainGuard]},
   {path: 'lunch', component: MainComponent, canActivate: [WeekdayGuard, MainGuard]},
   {path: 'lunch/**', redirectTo: 'lunch/', pathMatch: 'full'},
@@ -22,7 +25,7 @@ const appRoutes: Routes = [
     RouterModule
   ],
   providers: [
-    MainGuard, WeekdayGuard, LoginGuard
+    MainGuard, WeekdayGuard, SetupGuard, LoginGuard
   ]
 })
 export class AppRoutingModule {

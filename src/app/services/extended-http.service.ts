@@ -4,10 +4,12 @@ import { Observable } from 'rxjs/Observable';
 import { StorageService } from './storage.service';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import {NameChangingComponent} from "../containers/main/modals/name-changing/name-changing.component";
+import {MdDialog} from "@angular/material";
 
 @Injectable()
 export class ExtendedHttpService extends Http {
-  constructor(private backend: XHRBackend, private defaultOptions: RequestOptions, private _storage: StorageService) {
+  constructor(private dialog: MdDialog, private backend: XHRBackend, private defaultOptions: RequestOptions, private _storage: StorageService) {
     super(backend, defaultOptions);
   }
 
@@ -25,6 +27,9 @@ export class ExtendedHttpService extends Http {
         console.log("Access_token_expired: refreshing site to refresh token.");
         this._storage.RemoveItem('access_token');
         window.location.reload();
+      } else if (res.status === 400 && res.json().message === 'User with given name not found in sheet') {
+        this.dialog.open(NameChangingComponent, {disableClose: true, data: {cancellable: false}, width: '430px', height: '210px'});
+        res['message'] = res.json().message || 'An error occurred while processing request.';
       } else if(res.status === 500) {
         res['message'] = 'Server error has occurred, please try again.';
       } else {

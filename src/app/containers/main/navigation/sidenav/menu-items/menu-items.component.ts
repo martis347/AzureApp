@@ -5,6 +5,7 @@ import {Constants} from "../../../../../misc/constants";
 import Moment = moment.Moment;
 import {MdDialog} from "@angular/material";
 import {WeekChangingModal} from "../../../modals/week-changing/week-changing.component";
+import {NameChangingComponent} from "../../../modals/name-changing/name-changing.component";
 
 @Component({
   selector: 'menu-items',
@@ -40,6 +41,10 @@ export class MenuItemsComponent implements OnInit{
     this.activatedRoute.params.subscribe((params: Params) => {
       let day = params['day'];
     });
+  }
+
+  onNameChange() {
+    this.dialog.open(NameChangingComponent, {disableClose: false, data: {cancellable: true}, width: '400px', height: '210px'});
   }
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, public dialog: MdDialog) {

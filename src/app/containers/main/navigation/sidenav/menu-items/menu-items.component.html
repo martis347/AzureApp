@@ -6,6 +6,6 @@
   <a md-list-item  *ngFor="let day of days" (click)="onClick(day)">{{day.displayName}}</a>
 </ng-template>
 <ng-template #settings_content>
-  <a md-list-item>Change Name (TBD)</a>
+  <a md-list-item (click)="onNameChange()">Change Name </a>
   <a md-list-item>Settings (TBD)</a>
 </ng-template>

@@ -1,4 +1,5 @@
 import {Component, AfterViewChecked} from '@angular/core';
+import {StorageService} from "./services/storage.service";
 declare const componentHandler: any;
 
 @Component({
@@ -7,6 +8,8 @@ declare const componentHandler: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewChecked {
+  constructor() {
+  }
   ngAfterViewChecked() {
     if (componentHandler) {
       componentHandler.upgradeAllRegistered();

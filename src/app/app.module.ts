@@ -8,6 +8,9 @@ import {MDL} from "./misc/MaterialDesignLiteUpgradeElement";
 import {AppRoutingModule} from "./routing/app-routing.module";
 import {ExtendedHttpService} from "./services/extended-http.service";
 import {Http, HttpModule} from "@angular/http";
+import {CommonModule} from "@angular/common";
+import {BrowserModule} from "@angular/platform-browser";
+import {SignInComponent} from "./containers/main/setup/sign-in/sign-in.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import {Http, HttpModule} from "@angular/http";
     MainModule,
     ServicesModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    CommonModule,
+    BrowserModule
   ],
   providers: [
     {provide: Http, useClass: ExtendedHttpService}

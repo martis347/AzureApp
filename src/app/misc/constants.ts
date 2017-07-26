@@ -6,5 +6,6 @@ export class Constants {
     'Wednesday',
     'Thursday',
     'Friday'
-  ]
+  ];
+  public static REQUIRED_SCOPES = 'email https://www.googleapis.com/auth/spreadsheets';
 }

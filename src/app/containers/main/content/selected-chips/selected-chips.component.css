@@ -1,7 +1,16 @@
 md-chip {
   max-width: 500px;
+  margin-bottom: 5px;
 }
 
 md-chip > md-icon {
   cursor: pointer;
+  font-size: x-large;
+  top: 1px;
+  position: relative;
+}
+
+.chip-text {
+  position: relative;
+  top:-2px;
 }

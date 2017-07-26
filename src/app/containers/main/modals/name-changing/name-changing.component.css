@@ -1,0 +1,13 @@
+md-spinner {
+  width: 1.5em;
+  height: 1.5em;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.name-input {
+  width: 70%;
+  right: 0;
+  height: 70px;
+}

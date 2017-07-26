@@ -6,10 +6,13 @@
       aria-label="Indeterminate progress-bar example"></md-progress-bar>
   </md-card >
   <md-card *ngIf="!loadingCurrentOrder">
-    <md-card-header>
+    <md-card-header *ngIf="currentOrder">
       <md-card-title>Your Order For {{currentDay}}</md-card-title>
       <md-card-subtitle *ngIf="currentOrder.price ">Total Price: {{currentOrder.price}}</md-card-subtitle>
       <md-card-subtitle *ngIf="!currentOrder.sideDish && !currentOrder.mainDish">It Seems That You Have Not Selected Anything</md-card-subtitle>
+    </md-card-header>
+    <md-card-header *ngIf="!currentOrder">
+      <md-card-title>Failed to load your current order.</md-card-title>
     </md-card-header>
     <md-chip-list *ngIf="currentOrder">
       <md-chip selected="true" *ngIf="currentOrder.sideDish" [color]="'accent'" >

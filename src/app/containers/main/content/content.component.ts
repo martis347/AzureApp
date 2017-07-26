@@ -66,7 +66,11 @@ export class ContentComponent {
     this.dishesService.GetOrderedDishes(this.currentDay, this.storageService.GetItem('user'))
       .subscribe(result => {
         this.currentOrder = result.json();
-      }, null, () => {
+      }, error => {
+        this.snackBar.open(error.message || 'An error has occurred while retrieving ordered dishes.', 'OK');
+        this.loadingCurrentOrder = false;
+        this.currentOrder = null;
+      }, () => {
         this.loadingCurrentOrder = false;
       });
   }
