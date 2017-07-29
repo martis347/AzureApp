@@ -7,6 +7,7 @@ import {WeekdayGuard} from "./weekday-guard";
 import {MainComponent} from "../containers/main/main.component";
 import {SignInComponent} from "../containers/main/setup/sign-in/sign-in.component";
 import {LoginGuard} from "./login-guard";
+import {PrivacyPolicyComponent} from "../containers/privacy/privacy-policy/privacy-policy.component";
 
 const appRoutes: Routes = [
   {path: 'login', component: SignInComponent, canActivate: [LoginGuard]},
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
   {path: 'lunch/:date', component: MainComponent, canActivate: [WeekdayGuard, MainGuard]},
   {path: 'lunch', component: MainComponent, canActivate: [WeekdayGuard, MainGuard]},
   {path: 'lunch/**', redirectTo: 'lunch/', pathMatch: 'full'},
+  {path: 'privacy-policy', component: PrivacyPolicyComponent, pathMatch: 'full'},
   {path: '', redirectTo: 'lunch/', pathMatch: 'full'},
   {path: '**', redirectTo: 'lunch/', pathMatch: 'full'}
 ];

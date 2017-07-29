@@ -11,12 +11,13 @@ import {Http, HttpModule} from "@angular/http";
 import {CommonModule} from "@angular/common";
 import {BrowserModule} from "@angular/platform-browser";
 import {SignInComponent} from "./containers/main/setup/sign-in/sign-in.component";
+import { PrivacyPolicyComponent } from './containers/privacy/privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MDL,
-
+    PrivacyPolicyComponent,
   ],
   imports: [
     GithubModule,

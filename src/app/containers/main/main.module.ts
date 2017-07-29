@@ -14,12 +14,14 @@ import {StepperContentComponent} from "./setup/stepper/stepper-content.component
 import {FeedbackComponent} from "./modals/feedback/feedback.component";
 import {SignInComponent} from "./setup/sign-in/sign-in.component";
 import {NameChangingComponent} from "./modals/name-changing/name-changing.component";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     CommonModule,
     ContentModule,
+    RouterModule,
     MDModule
   ],
   declarations: [

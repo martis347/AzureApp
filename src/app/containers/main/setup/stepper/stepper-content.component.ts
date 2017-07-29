@@ -74,7 +74,7 @@ export class StepperContentComponent {
           const name = this.googleProfile.getBasicProfile().getGivenName();
           this.myControl.setValue(name, {emitEvent: true});
           this.filteredOptions = this.myControl.valueChanges
-            .startWith(null)
+            .startWith(name)
             .map(name => name ? this.filter(name) : this.options.slice());
         }, null, () => {
           this.loadingPeople = false;
