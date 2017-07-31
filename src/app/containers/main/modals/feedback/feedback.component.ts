@@ -18,4 +18,10 @@ export class FeedbackComponent {
       comment: this.comment.nativeElement.value
     };
   }
+
+  getLikesDisplayValue() {
+    return this.checkbox.indeterminate ? 'Hard to tell' :
+      this.checkbox.checked ? 'Hell Yeah!' :
+      'Not really...';
+  }
 }

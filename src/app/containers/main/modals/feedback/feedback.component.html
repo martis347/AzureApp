@@ -2,16 +2,19 @@
 <div md-dialog-content>
   <md-checkbox #checkbox
     class="example-margin"
+    [align]="'end'"
     [indeterminate]="true">
-    I Like This Idea!
+    I Like This Idea?
   </md-checkbox>
+  {{getLikesDisplayValue()}}
   <br>
   <div class="slider">
     <p>Design rating</p>
     <md-slider #designValue
       class="example-margin"
-      [max]="100"
-      [min]="0"
+      [max]="10"
+      [min]="-10"
+      [value]="0"
       [step]="1"
       [thumb-label]="true"
       [vertical]="false">

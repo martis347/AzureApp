@@ -23,9 +23,11 @@ export class ExtendedHttpService extends Http {
 
   private catchErrors() {
     return (res: Response) => {
-       if (res.status === 400 && res.json().message === 'User with given name not found in sheet') {
-        this.dialog.open(NameChangingComponent, {disableClose: true, data: {cancellable: false}, width: '430px', height: '210px'});
-        res['message'] = res.json().message || 'An error occurred while processing request.';
+       if (res.status === 400) {
+         if(res.json().message === 'User with given name not found in sheet') {
+           this.dialog.open(NameChangingComponent, {disableClose: true, data: {cancellable: false}, width: '430px', height: '210px'});
+           res['message'] = res.json().message || 'An error occurred while processing request.';
+         }
       } else if (res.status === 401) {
         console.log("Access_token_expired: refreshing site to refresh token.");
         this._storage.RemoveItem('access_token');

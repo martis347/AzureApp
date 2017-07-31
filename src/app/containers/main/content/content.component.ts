@@ -54,7 +54,10 @@ export class ContentComponent {
         this.providerB = providers[1];
       },
       error => {
-        this.snackBar.open(error.message, 'OK');
+        if(!this.snackBar._openedSnackBarRef) {
+          this.snackBar.open(error.json().message, 'OK');
+        }
+        this.loadingProviders = false
       },
       () => {
         this.loadingProviders = false
@@ -67,7 +70,9 @@ export class ContentComponent {
       .subscribe(result => {
         this.currentOrder = result.json();
       }, error => {
-        this.snackBar.open(error.message || 'An error has occurred while retrieving ordered dishes.', 'OK');
+        if(!this.snackBar._openedSnackBarRef) {
+          this.snackBar.open(error.json().message, 'OK');
+        }
         this.loadingCurrentOrder = false;
         this.currentOrder = null;
       }, () => {
