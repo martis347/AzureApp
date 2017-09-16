@@ -87,6 +87,7 @@ export class StepperContentComponent {
 
       this.googleProfile.grant(options).then(() => {
           this.storage.AddItem('access_token', this.googleProfile.Zi.access_token);
+          this.storage.AddItem('authenticated', Date.now().toString());
           this.stepper.nativeElement.MaterialStepper.next();
           loadPeople();
         },
@@ -99,6 +100,7 @@ export class StepperContentComponent {
         });
     } else {
       this.storage.AddItem('access_token', this.googleProfile.Zi.access_token);
+      this.storage.AddItem('authenticated', Date.now().toString());
       this.stepper.nativeElement.MaterialStepper.next();
       loadPeople();
     }

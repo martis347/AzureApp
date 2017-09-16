@@ -4,10 +4,9 @@
     <form [formGroup]="dateForm">
       <input class="time-input" #input mdInput [mdDatepicker]="picker" placeholder="Date" [mdDatepickerFilter]="filterDays" formControlName="date">
     </form>
-    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    <button mdSuffix></button>
     <md-error *ngIf="dateForm.invalid">Select A Valid Date</md-error>
   </md-input-container>
-  <md-datepicker #picker></md-datepicker>
 </div>
 
 <div md-dialog-actions>
