@@ -9,6 +9,7 @@ import {NotificationsService} from "./notifications.service";
 import {DishesService} from "./api/dishes.service";
 import {OrderStateService} from "./order-state.service";
 import {FeedbackService} from "./api/feedback.service";
+import {HelperService} from "./helper.service";
 
 @NgModule({
   providers: [
@@ -21,7 +22,8 @@ import {FeedbackService} from "./api/feedback.service";
     NotificationsService,
     DishesService,
     OrderStateService,
-    FeedbackService
+    FeedbackService,
+    HelperService
   ],
 })
 

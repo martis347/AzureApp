@@ -20,4 +20,20 @@ export class Utilities {
       return 'http://localhost:49219/api/';
     }
   }
+
+  public static IsSignedIn(storage) {
+    const timestamp = +storage.GetItem('authenticated');
+
+    let result = true ;
+    if (storage.GetItem('access_token') && timestamp && Date.now() - timestamp >= Constants.HALF_HOUR_IN_MILISECONDS) {
+      result = false;
+    }
+
+    return result;
+  }
+
+  constructor() {
+  }
+
+
 }

@@ -1,7 +1,8 @@
-import {Component, AfterViewChecked} from '@angular/core';
+import {Component, AfterViewChecked, ViewChild} from '@angular/core';
 import {StorageService} from './services/storage.service';
-import {Constants} from './misc/constants';
 import {Router} from '@angular/router';
+import {MdSidenav} from '@angular/material';
+import {Utilities} from './misc/utilities';
 declare const componentHandler: any;
 
 @Component({
@@ -12,11 +13,11 @@ declare const componentHandler: any;
 
 
 export class AppComponent implements AfterViewChecked {
+  @ViewChild(MdSidenav) sidenav:  MdSidenav;
 
   constructor(private storage: StorageService, private router: Router) {
-    const timestamp = +this.storage.GetItem('authenticated');
 
-    if (timestamp && Date.now() - timestamp >= Constants.HALF_HOUR_IN_MILISECONDS) {
+    if (!Utilities.IsSignedIn(storage)) {
       this.storage.RemoveItem('access_token');
       this.router.navigate(['/login']);
     }
@@ -26,5 +27,9 @@ export class AppComponent implements AfterViewChecked {
     if (componentHandler) {
       componentHandler.upgradeAllRegistered();
     }
+  }
+
+  onSwipeLeft() {
+    this.sidenav.close();
   }
 }

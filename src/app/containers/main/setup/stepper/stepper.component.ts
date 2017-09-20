@@ -1,13 +1,5 @@
-import {Component, ViewChild, ElementRef, NgZone, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
-import {FormControl} from "@angular/forms";
-import {Router, ActivatedRoute} from "@angular/router";
-import {Utilities} from "../../../../misc/utilities";
-import {StorageService} from "app/services/storage.service";
-import {PeopleService} from "../../../../services/api/people.service";
-import {NotificationsService} from "../../../../services/notifications.service";
-
-declare const gapi: any;
+import {Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'stepper',
@@ -16,8 +8,8 @@ declare const gapi: any;
 })
 
 export class StepperComponent {
-  percentLoaded: number = 0;
-  showStepper: boolean = false;
+  percentLoaded = 0;
+  showStepper = false;
   constructor(private activatedRoute: ActivatedRoute) {
     const intervalValue = this.activatedRoute.snapshot.queryParams['q'] ? 2 : 0.05;
 

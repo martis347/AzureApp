@@ -1,11 +1,11 @@
-import {Component, Inject} from "@angular/core";
-import {FormControl, ValidatorFn, Validators, AbstractControl} from "@angular/forms";
-import {PeopleService} from "../../../../services/api/people.service";
+import {Component, Inject} from '@angular/core';
+import {FormControl, ValidatorFn, Validators, AbstractControl} from '@angular/forms';
+import {PeopleService} from '../../../../services/api/people.service';
 
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
-import {StorageService} from "../../../../services/storage.service";
-import {MD_DIALOG_DATA} from "@angular/material";
+import {StorageService} from '../../../../services/storage.service';
+import {MD_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'name-changing',
@@ -13,7 +13,7 @@ import {MD_DIALOG_DATA} from "@angular/material";
   styleUrls: ['name-changing.component.css']
 })
 export class NameChangingComponent {
-  loadingPeople: boolean = false;
+  loadingPeople = false;
   options = [];
   myControl = new FormControl();
   filteredOptions;

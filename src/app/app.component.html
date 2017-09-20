@@ -1,1 +1,10 @@
-<router-outlet></router-outlet>
+<md-sidenav-container (swipeleft)="onSwipeLeft()">
+  <toolbar [sidenav]="sidenav"> </toolbar>
+
+  <md-sidenav #sidenav mode="push" class="app-sidenav">
+    <sidenav-content></sidenav-content>
+  </md-sidenav>
+
+  <router-outlet></router-outlet>
+
+</md-sidenav-container>

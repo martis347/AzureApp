@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {StorageService} from "../../../../services/storage.service";
+import {StorageService} from '../../../../services/storage.service';
 
 @Component({
   selector: 'sidenav-content',
@@ -8,13 +8,13 @@ import {StorageService} from "../../../../services/storage.service";
 })
 
 export class SidenavComponent {
-  showingSettings: boolean = false;
+  showingSettings = false;
 
-  toggleDropdown(): void{
+  toggleDropdown(): void {
     this.showingSettings = !this.showingSettings;
   }
 
-  getUserName(){
+  getUserName() {
     return this.storage.GetItem('user');
   }
 

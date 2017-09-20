@@ -1,4 +1,4 @@
-import {DishType} from "./DishType.enum";
+import {DishType} from './DishType.enum';
 
 export class Dish {
   public name: string;

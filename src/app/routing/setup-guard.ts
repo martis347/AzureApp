@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import * as moment from 'moment';
-import {Constants} from "../misc/constants";
-import {Utilities} from "../misc/utilities";
-import {StorageService} from "../services/storage.service";
+import {Utilities} from '../misc/utilities';
+import {StorageService} from '../services/storage.service';
 
 @Injectable()
 export class SetupGuard implements CanActivate {

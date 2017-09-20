@@ -1,17 +1,18 @@
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
-import {GithubModule} from './containers/github/github.module';
-import {HomeModule} from './containers/home/home.module';
-import {MainModule} from './containers/main/main.module';
-import {ServicesModule} from './services/services.module';
-import {MDL} from "./misc/MaterialDesignLiteUpgradeElement";
-import {AppRoutingModule} from "./routing/app-routing.module";
-import {ExtendedHttpService} from "./services/extended-http.service";
-import {Http, HttpModule} from "@angular/http";
-import {CommonModule} from "@angular/common";
-import {BrowserModule} from "@angular/platform-browser";
-import {SignInComponent} from "./containers/main/setup/sign-in/sign-in.component";
+import {MDL} from './misc/MaterialDesignLiteUpgradeElement';
+import {ExtendedHttpService} from './services/extended-http.service';
+import {Http, HttpModule} from '@angular/http';
+import {CommonModule} from '@angular/common';
 import { PrivacyPolicyComponent } from './containers/privacy/privacy-policy/privacy-policy.component';
+import {MDModule} from './misc/material-design.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ContentModule} from './containers/main/content/content.module';
+import {RouterModule} from '@angular/router';
+import {FormsModule} from '@angular/forms';
+import {MainModule} from "./containers/main/main.module";
+import {ServicesModule} from "./services/services.module";
+import {AppRoutingModule} from "./routing/app-routing.module";
 
 @NgModule({
   declarations: [
@@ -20,14 +21,17 @@ import { PrivacyPolicyComponent } from './containers/privacy/privacy-policy/priv
     PrivacyPolicyComponent,
   ],
   imports: [
-    GithubModule,
-    HomeModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    ContentModule,
+    RouterModule,
+    MDModule,
+    FormsModule,
     MainModule,
     ServicesModule,
+    RouterModule,
     AppRoutingModule,
-    HttpModule,
-    CommonModule,
-    BrowserModule
+    HttpModule
   ],
   providers: [
     {provide: Http, useClass: ExtendedHttpService}

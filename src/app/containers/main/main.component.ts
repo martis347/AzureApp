@@ -1,9 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
-import {Hammer} from "hammerjs";
-import {MdSidenav, MdSnackBar} from "@angular/material";
-import {ContentComponent} from "app/containers/main/content/content.component";
-import {OrderStateService} from "app/services/order-state.service";
-import {ActivatedRoute} from "@angular/router";
+import {Hammer} from 'hammerjs';
+import {MdSnackBar} from '@angular/material';
+import {ContentComponent} from 'app/containers/main/content/content.component';
+import {OrderStateService} from 'app/services/order-state.service';
+import {ActivatedRoute} from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
@@ -13,6 +13,11 @@ import * as moment from 'moment';
 })
 
 export class MainComponent {
+  @ViewChild(ContentComponent) content: ContentComponent;
+  isSavingOrder: boolean;
+  canOrder: Function;
+  currentDay: string;
+
   constructor(private snackBar: MdSnackBar, orderStateService: OrderStateService, private activatedRoute: ActivatedRoute) {
 
     this.activatedRoute.params.subscribe(params => {
@@ -20,13 +25,8 @@ export class MainComponent {
     });
     this.canOrder = () => {
       return orderStateService.canOrder(this.currentDay);
-    }
+    };
   }
-  @ViewChild(MdSidenav) sidenav : MdSidenav;
-  @ViewChild(ContentComponent) content : ContentComponent;
-  isSavingOrder: boolean;
-  canOrder: Function;
-  currentDay: string;
 
   onCheckClick: Function = () => {
     this.isSavingOrder = true;
@@ -41,9 +41,7 @@ export class MainComponent {
     };
 
     this.content.onConfirmClick(onDone, onError);
-  };
-
-  onSwipeLeft(){
-    this.sidenav.close();
   }
+
+
 }

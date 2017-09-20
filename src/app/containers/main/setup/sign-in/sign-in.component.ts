@@ -14,7 +14,7 @@ export class SignInComponent implements AfterViewInit {
   timeout;
   showContent = false;
 
-  constructor(private router: Router, private storage: StorageService) {
+  constructor(private router:  Router, private storage: StorageService) {
     this.timeout = setTimeout(() => this.showContent = true, 500);
   }
 

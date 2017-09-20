@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Router, ActivatedRoute, Params} from "@angular/router";
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import * as moment from 'moment';
-import {Constants} from "../../../../../misc/constants";
-import Moment = moment.Moment;
-import {MdDialog} from "@angular/material";
-import {WeekChangingModal} from "../../../modals/week-changing/week-changing.component";
-import {NameChangingComponent} from "../../../modals/name-changing/name-changing.component";
+import {Constants} from '../../../../../misc/constants';
+import {MdDialog} from '@angular/material';
+import {NameChangingComponent} from '../../../modals/name-changing/name-changing.component';
+import {DayChangingComponent} from '../../../modals/day-changing/day-changing.component';
+import {HelperService} from "../../../../../services/helper.service";
 
 @Component({
   selector: 'menu-items',
@@ -13,9 +13,8 @@ import {NameChangingComponent} from "../../../modals/name-changing/name-changing
   styleUrls: ['menu-items.component.css']
 })
 
-export class MenuItemsComponent implements OnInit{
+export class MenuItemsComponent implements OnInit {
   @Input() showingSettings: boolean;
-  startingWeek: Moment;
   days: Object[] = [
     {'id': 0, 'displayName': 'Monday'},
     {'id': 1, 'displayName': 'Tuesday'},
@@ -25,21 +24,20 @@ export class MenuItemsComponent implements OnInit{
   ];
 
   onClick(day): void {
-    this.router.navigate(['/lunch', moment(this.startingWeek).add(day.id, 'days').format(Constants.DATE_FORMAT)]);
+    this.router.navigate(['/lunch', moment(this.helperService.getDateFromRoute('date'), Constants.DATE_FORMAT).startOf('isoWeek').add(day.id, 'days').format(Constants.DATE_FORMAT)]);
   }
 
-  onWeekChange() {
-    let dialogRef = this.dialog.open(WeekChangingModal);
+  onMenuChange() {
+    const dialogRef = this.dialog.open(DayChangingComponent, {disableClose: false, data: {cancellable: true}, width: '400px'});
     dialogRef.afterClosed().subscribe(result => {
-      if(moment(result, Constants.DATE_FORMAT).isValid()){
-        this.router.navigate(['/lunch', result]);
-      }
+      console.log(result);
+      this.router.navigate(['/edit', result]) ;
     });
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
-      let day = params['day'];
+      const day = params['day'];
     });
   }
 
@@ -47,9 +45,6 @@ export class MenuItemsComponent implements OnInit{
     this.dialog.open(NameChangingComponent, {disableClose: false, data: {cancellable: true}, width: '400px', height: '210px'});
   }
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, public dialog: MdDialog) {
-    this.activatedRoute.params.subscribe(params => {
-      this.startingWeek = moment(params['date'], Constants.DATE_FORMAT).startOf('isoWeek');
-    });
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, public dialog: MdDialog, private helperService: HelperService) {
   }
 }

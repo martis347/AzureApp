@@ -1,0 +1,7 @@
+<h1 md-dialog-title>Please select a day to edit.</h1>
+<div md-dialog-content class="content">
+  <md-nav-list *ngFor="let day of days" (click)="onDayClick(day)">
+    <md-list-item> {{day}} </md-list-item>
+  </md-nav-list>
+ <!-- <button class="right" md-button (click)="onSubmit()" [md-dialog-close] [disabled]="!myControl.valid || myControl.pristine">Confirm</button>-->
+</div>
