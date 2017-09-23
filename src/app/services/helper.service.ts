@@ -10,6 +10,6 @@ export class HelperService {
     const value = this.route.children
       .filter((a: any) => a.params.getValue(paramName))
       .map((a: any) => a.params.getValue(paramName)[paramName]);
-    return value;
+    return value.length ? value[0] : null;
   }
 }

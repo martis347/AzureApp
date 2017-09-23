@@ -6,11 +6,7 @@ md-chip {
 md-chip > md-icon {
   cursor: pointer;
   font-size: x-large;
-  top: 1px;
   position: relative;
-}
-
-.chip-text {
-  position: relative;
-  top:-2px;
+  top: -4px;
+  left: 6px;
 }

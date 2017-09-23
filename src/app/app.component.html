@@ -8,3 +8,9 @@
   <router-outlet></router-outlet>
 
 </md-sidenav-container>
+
+<span class="app-action">
+  <button [disabled]="canOrder()" md-fab (click)="onCheckClick()" *ngIf="!isSavingOrder"><i class="material-icons app-toolbar-menu check-circle">check circle</i></button>
+  <md-spinner class="app-spinner" color="accent" *ngIf="isSavingOrder"></md-spinner>
+
+</span>

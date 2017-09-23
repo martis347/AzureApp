@@ -1,4 +1,3 @@
-<!--
 <md-expansion-panel [expanded]="step === index" (opened)="setStep()" hideToggle="true">
   <md-expansion-panel-header>
     <md-panel-title>
@@ -15,33 +14,13 @@
   </md-form-field>
   <md-divider></md-divider>
 
-  <div class="category">
-    <md-list>
-      <md-form-field>
-        <input mdInput placeholder="Category Name">
-      </md-form-field>
-      <md-list-item *ngFor="let folder of folders">
-        <div class="dish">
-          <md-form-field>
-            <input mdInput placeholder="Dish Name">
-          </md-form-field>
-
-          <md-form-field>
-            <input mdInput type="number" step="0.1" placeholder="Price €">
-          </md-form-field>
-        </div>
-      </md-list-item>
-    </md-list>
+  <div *ngFor="let category of categories">
+    <category [categoryData]="category" (deleteCategory)="onCategoryDelete(category)"></category>
   </div>
-
-
-
-
-
+  <button md-button color="warn" (click)="addCategory()">Add Category</button>
 
   <md-action-row>
     <button md-button color="warn" (click)="prevStep()">Previous</button>
     <button md-button color="primary" (click)="nextStep()">Next</button>
   </md-action-row>
 </md-expansion-panel>
--->

@@ -20,10 +20,6 @@ export class LunchEditingComponent implements OnInit {
     this.step++;
   }
 
-  prevStep() {
-    this.step--;
-  }
-
   constructor() { }
 
   ngOnInit() {

@@ -1,4 +1,3 @@
-<!--
 <div class="app-content">
   <md-accordion class="example-headers-align">
     <md-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
@@ -18,8 +17,8 @@
 
       <md-slide-toggle
         class="example-margin"
-        [color]="primary"
-        [checked]="checked">
+        [color]="'primary'"
+        [checked]="'checked'">
         Free of Charge
       </md-slide-toggle>
 
@@ -32,8 +31,7 @@
       </md-action-row>
     </md-expansion-panel>
 
-    <provider-tab *ngFor="let provider of providers; let i = index" [provider]="provider" [(step)]="step" [index]="i"></provider-tab>
+    <provider-tab *ngFor="let provider of providers; let i = index" [provider]="provider" [(step)]="step" [index]="i + 1"></provider-tab>
   </md-accordion>
 
 </div>
--->
