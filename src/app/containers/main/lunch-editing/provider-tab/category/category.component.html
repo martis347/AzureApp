@@ -7,7 +7,7 @@
     <md-form-field>
       <input mdInput placeholder="Category Name" [(ngModel)]="categoryData.name">
     </md-form-field>
-    <button class="delete-button" mdTooltip="Delete category" color="primary" [mdTooltipPosition]="'after'" (click)="removeCategory()" md-icon-button>
+    <button class="delete-button" mdTooltip="Delete category" color="primary" [mdTooltipPosition]="'after'" (click)="removeCategory()" md-icon-button *ngIf="!isLastCategory">
       <md-icon class="md-24">delete</md-icon>
     </button >
     <md-list-item *ngFor="let dish of (expanded ? categoryData.dishes : [])">

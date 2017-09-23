@@ -8,5 +8,5 @@ export class Constants {
     'Friday'
   ];
   public static REQUIRED_SCOPES = 'email https://www.googleapis.com/auth/spreadsheets';
-  public static HALF_HOUR_IN_MILISECONDS = 1000 * 60 * 30;
+  public static HOUR_IN_MILISECONDS = 1000 * 60 * 60;
 }

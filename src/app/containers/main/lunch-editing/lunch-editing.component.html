@@ -12,18 +12,18 @@
       </md-expansion-panel-header>
 
       <md-form-field>
-        <input mdInput type="time" placeholder="Order until">
+        <input mdInput type="time" placeholder="Order until" [(ngModel)]="details.orderUntil">
       </md-form-field>
 
       <md-slide-toggle
         class="example-margin"
         [color]="'primary'"
-        [checked]="'checked'">
+        [(ngModel)]="details.freeOfChange">
         Free of Charge
       </md-slide-toggle>
 
       <md-form-field class="comments">
-        <textarea mdInput placeholder="Additional comments"></textarea>
+        <textarea mdInput placeholder="Additional comments" [(ngModel)]="details.comment"></textarea>
       </md-form-field>
 
       <md-action-row>
@@ -31,7 +31,16 @@
       </md-action-row>
     </md-expansion-panel>
 
-    <provider-tab *ngFor="let provider of providers; let i = index" [provider]="provider" [(step)]="step" [index]="i + 1"></provider-tab>
+    <provider-tab
+      *ngFor="let provider of providers; let i = index"
+      [(provider)]="providers[i]"
+      [(step)]="step"
+      [index]="i + 1"
+      [isLastProvider]="providers.length === (i + 1)"
+      [isOnlyProvider]="providers.length === 1"
+      (onAddProvider)="addProvider()"
+      (onDeleteProvider)="deleteProvider(providers[i])">
+    </provider-tab>
   </md-accordion>
 
 </div>

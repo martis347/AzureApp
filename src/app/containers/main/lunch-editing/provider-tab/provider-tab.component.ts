@@ -7,17 +7,15 @@ import {Provider} from '../../../../models/Provider';
   styleUrls: ['./provider-tab.component.css']
 })
 export class ProviderTabComponent {
-  @Input() provider: Provider;
+  @Input() provider: any;
+  @Output() providerChange: EventEmitter<number> = new EventEmitter();
   @Input() index: number;
   @Input() step: number;
   @Output() stepChange: EventEmitter<number> = new EventEmitter();
-  categories = [{
-    name: '',
-    dishes: [{
-      name: '',
-      price: ''
-    }]
-  }];
+  @Input() isLastProvider: boolean;
+  @Input() isOnlyProvider: boolean;
+  @Output() onAddProvider: EventEmitter<any> = new EventEmitter();
+  @Output() onDeleteProvider: EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   nextStep() {
@@ -33,17 +31,29 @@ export class ProviderTabComponent {
   }
 
   addCategory() {
-    this.categories.push({
+    this.provider.categories.push({
       name: '',
       dishes: [{
         name: '',
         price: ''
       }]
     });
+
+    this.providerChange.emit(this.provider);
   }
 
   onCategoryDelete(category) {
-    this.categories.splice(this.categories.indexOf(category), 1) ;
+    this.provider.categories.splice(this.provider.categories.indexOf(category), 1) ;
+    this.providerChange.emit(this.provider);
+  }
+
+  addProvider() {
+    this.onAddProvider.emit({});
+    this.nextStep();
+  }
+
+  deleteProvider() {
+    this.onDeleteProvider.emit();
   }
 
 }

@@ -1,11 +1,12 @@
-<md-expansion-panel [expanded]="step === index" (opened)="setStep()" hideToggle="true">
+<md-expansion-panel [expanded]="step === index" (opened)="setStep()" hideToggle="false">
   <md-expansion-panel-header>
     <md-panel-title>
       {{provider.name ? provider.name : 'New Provider'}}
     </md-panel-title>
     <md-panel-description>
       Type the details of all dishes
-      <md-icon>account_box</md-icon>
+      <md-icon mdTooltip="Delete Provider" [mdTooltipPosition]="'above'" (click)="deleteProvider()" *ngIf="!isOnlyProvider">delete</md-icon>
+      <md-icon *ngIf="isOnlyProvider">account_box</md-icon>
     </md-panel-description>
   </md-expansion-panel-header>
 
@@ -14,13 +15,14 @@
   </md-form-field>
   <md-divider></md-divider>
 
-  <div *ngFor="let category of categories">
-    <category [categoryData]="category" (deleteCategory)="onCategoryDelete(category)"></category>
+  <div *ngFor="let category of provider.categories">
+    <category [categoryData]="category" (deleteCategory)="onCategoryDelete(category)" [isLastCategory]="provider.categories.length < 2"></category>
   </div>
   <button md-button color="warn" (click)="addCategory()">Add Category</button>
 
   <md-action-row>
     <button md-button color="warn" (click)="prevStep()">Previous</button>
-    <button md-button color="primary" (click)="nextStep()">Next</button>
+    <button md-button color="primary" (click)="nextStep()" *ngIf="!isLastProvider">Next</button>
+    <button md-button color="primary" (click)="addProvider()" *ngIf="isLastProvider">Add Provider</button>
   </md-action-row>
 </md-expansion-panel>

@@ -7,6 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class CategoryComponent implements OnInit {
   @Input() categoryData;
+  @Input() isLastCategory;
   @Output() categoryDataChange = new EventEmitter<object>();
   @Output() deleteCategory = new EventEmitter<any>();
   expanded = true;
