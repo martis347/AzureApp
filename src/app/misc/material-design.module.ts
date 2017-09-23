@@ -3,7 +3,7 @@ import {
   MdButtonModule, MdListModule, MdMenuModule, MdToolbarModule, MdSidenavModule,
   MdSlideToggleModule, MdChipsModule, MdAutocompleteModule, MdInputModule, MdProgressBarModule, MdProgressSpinnerModule,
   MdCardModule, MdCheckboxModule, MdDialogModule, MdDatepickerModule, MdNativeDateModule,
-  MdSnackBarModule, MdSliderModule, MdAccordion, MdExpansionModule, MdIconModule, MdTooltipModule
+  MdSnackBarModule, MdSliderModule, MdExpansionModule, MdIconModule, MdTooltipModule, MdFormFieldModule
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 
@@ -30,7 +30,8 @@ const modules: any[] = [
   MdSliderModule,
   MdExpansionModule,
   MdIconModule,
-  MdTooltipModule
+  MdTooltipModule,
+  MdFormFieldModule
 ];
 
 @NgModule({
