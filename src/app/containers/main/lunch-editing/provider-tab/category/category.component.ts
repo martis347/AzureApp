@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Category} from '../../lunch-editing.component';
 
 @Component({
   selector: 'category',
@@ -6,9 +7,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
-  @Input() categoryData;
-  @Input() isLastCategory;
-  @Output() categoryDataChange = new EventEmitter<object>();
+  @Input() categoryData: Category;
+  @Input() isLastCategory: boolean;
+  @Output() categoryDataChange = new EventEmitter<Category>();
   @Output() deleteCategory = new EventEmitter<any>();
   expanded = true;
   constructor() { }
@@ -16,10 +17,15 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
   }
 
+  trackByFn(index: any) {
+    return index;
+  }
+
   addDish() {
     this.categoryData.dishes.push({
-      name: '',
-      price: ''
+      sideDishes: [''],
+      mainDishes: [''],
+      price: 0
     });
 
     this.categoryDataChange.emit(this.categoryData);
@@ -33,6 +39,20 @@ export class CategoryComponent implements OnInit {
 
   removeCategory() {
     this.deleteCategory.emit({});
+  }
+
+  onDishValueChange(newValue, dishes) {
+    if (newValue.key === '+') {
+      if (dishes.length < 3) {
+        dishes.push('');
+      }
+      newValue.preventDefault();
+    } else if (newValue.key === '-') {
+      if (dishes.length > 1) {
+        dishes.pop();
+      }
+      newValue.preventDefault();
+    }
   }
 
 }

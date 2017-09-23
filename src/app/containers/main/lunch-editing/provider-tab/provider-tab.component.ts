@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Provider} from '../../../../models/Provider';
+import {Provider} from '../lunch-editing.component';
 
 @Component({
   selector: 'provider-tab',
@@ -7,8 +7,8 @@ import {Provider} from '../../../../models/Provider';
   styleUrls: ['./provider-tab.component.css']
 })
 export class ProviderTabComponent {
-  @Input() provider: any;
-  @Output() providerChange: EventEmitter<number> = new EventEmitter();
+  @Input() provider: Provider;
+  @Output() providerChange: EventEmitter<Provider> = new EventEmitter();
   @Input() index: number;
   @Input() step: number;
   @Output() stepChange: EventEmitter<number> = new EventEmitter();
@@ -34,8 +34,9 @@ export class ProviderTabComponent {
     this.provider.categories.push({
       name: '',
       dishes: [{
-        name: '',
-        price: ''
+        sideDishes: [''],
+        mainDishes: [''],
+        price: 0
       }]
     });
 

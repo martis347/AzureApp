@@ -1,14 +1,13 @@
 import {Component, ViewChild} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {SelectedChipsComponent} from "./selected-chips/selected-chips.component";
-import {MdSnackBar} from "@angular/material";
-import {ProvidersService} from "app/services/api/providers.service";
+import {ActivatedRoute} from '@angular/router';
+import {SelectedChipsComponent} from './selected-chips/selected-chips.component';
+import {MdSnackBar} from '@angular/material';
+import {ProvidersService} from 'app/services/api/providers.service';
 import * as moment from 'moment';
-import {Provider} from "../../../models/Provider";
-import {DishesService} from "../../../services/api/dishes.service";
-import {DishType} from "../../../models/DishType.enum";
-import {StorageService} from "../../../services/storage.service";
-import {OrderStateService} from "../../../services/order-state.service";
+import {DishesService} from '../../../services/api/dishes.service';
+import {DishType} from '../../../models/DishType.enum';
+import {StorageService} from '../../../services/storage.service';
+import {OrderStateService} from '../../../services/order-state.service';
 
 @Component({
   selector: 'app-content',
@@ -21,11 +20,11 @@ export class ContentComponent {
 
   currentDay: string;
   selection: any = {price: 0, items: []};
-  loadingProviders: boolean = false;
-  loadingCurrentOrder: boolean = false;
+  loadingProviders = false;
+  loadingCurrentOrder = false;
   currentOrder;
-  providerA: Provider;
-  providerB: Provider;
+  providerA: any;
+  providerB: any;
   canOrder: Function;
 
   constructor(private activatedRoute: ActivatedRoute, private snackBar: MdSnackBar, orderStateService: OrderStateService, private providersService: ProvidersService, private dishesService: DishesService, private storageService: StorageService) {
@@ -33,13 +32,13 @@ export class ContentComponent {
       this.currentDay = moment(params['date']).format('dddd');
       this.updateProviders();
       this.updateCurrentOrder();
-      if(this.chips){
+      if (this.chips){
         this.chips.reset();
         this.selection = {price: 0, items: []};
       }
       this.canOrder = () => {
         return orderStateService.canOrder(this.currentDay);
-      }
+      };
     });
   }
 
@@ -49,18 +48,18 @@ export class ContentComponent {
     this.loadingProviders = true;
     this.providersService.GetProviders(this.currentDay).subscribe(
       response => {
-        let providers: any[] = response.json();
+        const providers: any[] = response.json();
         this.providerA = providers[0];
         this.providerB = providers[1];
       },
       error => {
-        if(!this.snackBar._openedSnackBarRef) {
+        if (!this.snackBar._openedSnackBarRef) {
           this.snackBar.open(error.json().message, 'OK');
         }
-        this.loadingProviders = false
+        this.loadingProviders = false;
       },
       () => {
-        this.loadingProviders = false
+        this.loadingProviders = false;
       });
   }
 
@@ -70,7 +69,7 @@ export class ContentComponent {
       .subscribe(result => {
         this.currentOrder = result.json();
       }, error => {
-        if(!this.snackBar._openedSnackBarRef) {
+        if (!this.snackBar._openedSnackBarRef) {
           this.snackBar.open(error.json().message, 'OK');
         }
         this.loadingCurrentOrder = false;
@@ -105,7 +104,7 @@ export class ContentComponent {
     });
 
     orderObservable.subscribe(() => {
-      if(this.selection.items.length === 0) {
+      if (this.selection.items.length === 0) {
         this.snackBar.open('Successfully cleared your order.', 'OK', {duration: 10000} );
 
       } else {
