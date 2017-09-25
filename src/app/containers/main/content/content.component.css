@@ -25,6 +25,10 @@ h2 {
   height: 40px;
 }
 
+.orders-totals-modal {
+  width: 60em;
+}
+
 @media (min-width: 800px) {
   .items-list.left {
     left: 0;
@@ -40,5 +44,9 @@ h2 {
     position: absolute;
     display: inline-block;
     width: calc(50vw - 70px);
+  }
+
+  .orders-totals-modal {
+    width: 30em;
   }
 }
