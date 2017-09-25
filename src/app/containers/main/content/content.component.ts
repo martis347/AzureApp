@@ -139,7 +139,7 @@ export class ContentComponent {
     const orderTotals = this.dishesService.GetOrdersCount(this.currentDay);
     orderTotals.subscribe(() => {
 
-      this.dialog.open(TotalOrdersComponent, {disableClose: false, data: orderTotals, width: '60em', panelClass: 'orders-totals-modal'});
+      this.dialog.open(TotalOrdersComponent, {disableClose: false, data: orderTotals});
       this.loadingOrderTotals = false;
     });
   }
