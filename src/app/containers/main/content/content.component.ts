@@ -9,6 +9,7 @@ import {DishType} from '../../../models/DishType.enum';
 import {StorageService} from '../../../services/storage.service';
 import {OrderStateService} from '../../../services/order-state.service';
 import {TotalOrdersComponent} from "../modals/total-orders/total-orders.component";
+import {Utilities} from "../../../misc/utilities";
 
 @Component({
   selector: 'app-content',
@@ -135,10 +136,10 @@ export class ContentComponent {
 
   onViewTotalOrders() {
     this.loadingOrderTotals = true;
-    const orderTotals = this.dishesService.GetOrdersCount('monday');
+    const orderTotals = this.dishesService.GetOrdersCount(this.currentDay);
     orderTotals.subscribe(() => {
 
-      this.dialog.open(TotalOrdersComponent, {disableClose: false, data: orderTotals, width: '60em'});
+      this.dialog.open(TotalOrdersComponent, {disableClose: false, data: orderTotals, width: '60em', panelClass: 'orders-totals-modal'});
       this.loadingOrderTotals = false;
     });
   }
