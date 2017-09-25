@@ -29,7 +29,7 @@ export class MenuItemsComponent implements OnInit {
   }
 
   onMenuChange() {
-    const dialogRef = this.dialog.open(DayChangingComponent, {disableClose: false, data: {cancellable: true}, width: '400px'});
+    const dialogRef = this.dialog.open(DayChangingComponent, {disableClose: false, data: {cancellable: true}});
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       this.router.navigate(['/edit', result]) ;
@@ -37,15 +37,12 @@ export class MenuItemsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      const day = params['day'];
-    });
   }
 
   onNameChange() {
-    this.dialog.open(NameChangingComponent, {disableClose: false, data: {cancellable: true}, width: '400px', height: '210px'});
+    this.dialog.open(NameChangingComponent, {disableClose: false, data: {cancellable: true}});
   }
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, public dialog: MdDialog, private helperService: HelperService) {
+  constructor(private router: Router, public dialog: MdDialog, private helperService: HelperService) {
   }
 }
