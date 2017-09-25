@@ -1,13 +1,14 @@
 import {Component, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {SelectedChipsComponent} from './selected-chips/selected-chips.component';
-import {MdSnackBar} from '@angular/material';
+import {MdDialog, MdSnackBar} from '@angular/material';
 import {ProvidersService} from 'app/services/api/providers.service';
 import * as moment from 'moment';
 import {DishesService} from '../../../services/api/dishes.service';
 import {DishType} from '../../../models/DishType.enum';
 import {StorageService} from '../../../services/storage.service';
 import {OrderStateService} from '../../../services/order-state.service';
+import {TotalOrdersComponent} from "../modals/total-orders/total-orders.component";
 
 @Component({
   selector: 'app-content',
@@ -26,13 +27,22 @@ export class ContentComponent {
   providerA: any;
   providerB: any;
   canOrder: Function;
+  loadingOrderTotals = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private snackBar: MdSnackBar, orderStateService: OrderStateService, private providersService: ProvidersService, private dishesService: DishesService, private storageService: StorageService) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private snackBar: MdSnackBar,
+    private orderStateService: OrderStateService,
+    public dialog: MdDialog,
+    private providersService: ProvidersService,
+    private dishesService: DishesService,
+    private storageService: StorageService)
+  {
     this.activatedRoute.params.subscribe(params => {
       this.currentDay = moment(params['date']).format('dddd');
       this.updateProviders();
       this.updateCurrentOrder();
-      if (this.chips){
+      if (this.chips) {
         this.chips.reset();
         this.selection = {price: 0, items: []};
       }
@@ -108,7 +118,12 @@ export class ContentComponent {
         this.snackBar.open('Successfully cleared your order.', 'OK', {duration: 10000} );
 
       } else {
-        this.snackBar.open('Successfully Ordered ' + this.selection.items[0].name + (this.selection.items[1] ? ' & ' + this.selection.items[1].name : '') + ' for ' + this.selection.price + '€', 'OK', {duration: 10000} );
+        this.snackBar.open(
+          'Successfully Ordered ' +
+          this.selection.items[0].name +
+          (this.selection.items[1] ? ' & ' + this.selection.items[1].name : '') +
+          ' for ' + this.selection.price + '€', 'OK',
+          {duration: 10000} );
       }
       this.updateCurrentOrder();
       this.chips.reset();
@@ -116,5 +131,15 @@ export class ContentComponent {
     }, onError, onDone);
 
     return orderObservable;
+  }
+
+  onViewTotalOrders() {
+    this.loadingOrderTotals = true;
+    const orderTotals = this.dishesService.GetOrdersCount('monday');
+    orderTotals.subscribe(() => {
+
+      this.dialog.open(TotalOrdersComponent, {disableClose: false, data: orderTotals, width: '60em'});
+      this.loadingOrderTotals = false;
+    });
   }
 }

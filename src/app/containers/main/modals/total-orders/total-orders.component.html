@@ -1,0 +1,17 @@
+<h1 md-dialog-title>Selected Dishes so far</h1>
+<div md-dialog-content class="content">
+  <md-table #table [dataSource]="dataSource">
+    <ng-container mdColumnDef="dishName">
+      <md-header-cell *mdHeaderCellDef> Dish Name </md-header-cell>
+      <md-cell class="name-cell" *mdCellDef="let row"> {{row.dishName}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="count">
+      <md-header-cell *mdHeaderCellDef> Ordered Count </md-header-cell>
+      <md-cell class="count-cell" *mdCellDef="let row"> {{row.count}} </md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+</div>

@@ -18,4 +18,10 @@ export class DishesService {
 
     return result;
   }
+
+  public GetOrdersCount(date: string): Observable<any> {
+    const result = this.http.get(Utilities.GetApiUrl() + 'dishes/ordersCount/' + date);
+
+    return result;
+  }
 }

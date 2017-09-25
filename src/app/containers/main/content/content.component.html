@@ -9,19 +9,26 @@
     <md-card-header *ngIf="currentOrder">
       <md-card-title>Your Order For {{currentDay}}</md-card-title>
       <md-card-subtitle *ngIf="currentOrder.price ">Total Price: {{currentOrder.price}}</md-card-subtitle>
-      <md-card-subtitle *ngIf="!currentOrder.sideDish && !currentOrder.mainDish">It Seems That You Have Not Selected Anything</md-card-subtitle>
+      <md-card-subtitle *ngIf="!currentOrder.sideDish && !currentOrder.mainDish">It Seems That You Have Not Selected Anything.</md-card-subtitle>
     </md-card-header>
     <md-card-header *ngIf="!currentOrder">
       <md-card-title>Failed to load your current order.</md-card-title>
     </md-card-header>
-    <md-chip-list *ngIf="currentOrder">
-      <md-chip selected="true" *ngIf="currentOrder.sideDish" [color]="'accent'" >
-        <span>{{currentOrder.sideDish}}</span>
-      </md-chip>
-      <md-chip selected="true" *ngIf="currentOrder.mainDish" [color]="'primary'" >
-        <span>{{currentOrder.mainDish}}</span>
-      </md-chip>
-    </md-chip-list>
+    <md-card-content>
+      <md-chip-list *ngIf="currentOrder">
+        <md-chip selected="true" *ngIf="currentOrder.sideDish" [color]="'accent'" >
+          <span>{{currentOrder.sideDish}}</span>
+        </md-chip>
+        <md-chip selected="true" *ngIf="currentOrder.mainDish" [color]="'primary'" >
+          <span>{{currentOrder.mainDish}}</span>
+        </md-chip>
+      </md-chip-list>
+      <button md-mini-fab (click)="onViewTotalOrders()" [hidden]="loadingOrderTotals">
+        <i class="material-icons">visibility</i>
+      </button>
+      <md-spinner color="accent" class="orderTotalsSpinner" [hidden]="!loadingOrderTotals"></md-spinner>
+    </md-card-content>
+
   </md-card>
 
   <md-card [hidden]="canOrder()">
