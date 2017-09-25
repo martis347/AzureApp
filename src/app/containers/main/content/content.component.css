@@ -20,6 +20,11 @@ h2 {
   color: rgba(0, 0, 0, 0.54);
 }
 
+.orderTotalsSpinner {
+  width: 40px;
+  height: 40px;
+}
+
 @media (min-width: 800px) {
   .items-list.left {
     left: 0;

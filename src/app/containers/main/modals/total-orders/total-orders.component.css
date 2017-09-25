@@ -1,0 +1,8 @@
+.name-cell, .cdk-column-dishName {
+  flex-grow: 5;
+}
+
+.count-cell, .cdk-column-count {
+  text-align: center;
+}
+

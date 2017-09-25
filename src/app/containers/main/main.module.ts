@@ -20,6 +20,7 @@ import { LunchEditingComponent } from './lunch-editing/lunch-editing.component';
 import { ProviderTabComponent } from './lunch-editing/provider-tab/provider-tab.component';
 import {FormsModule} from '@angular/forms';
 import { CategoryComponent } from './lunch-editing/provider-tab/category/category.component';
+import { TotalOrdersComponent } from './modals/total-orders/total-orders.component';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { CategoryComponent } from './lunch-editing/provider-tab/category/categor
     SignInComponent,
     LunchEditingComponent,
     ProviderTabComponent,
-    CategoryComponent
+    CategoryComponent,
+    TotalOrdersComponent
   ],
   exports: [
     MainComponent,
@@ -53,7 +55,7 @@ import { CategoryComponent } from './lunch-editing/provider-tab/category/categor
     ToolbarComponent,
     MenuItemsComponent
   ],
-  entryComponents: [WeekChangingModal, FeedbackComponent, NameChangingComponent, DayChangingComponent]
+  entryComponents: [WeekChangingModal, FeedbackComponent, NameChangingComponent, DayChangingComponent, TotalOrdersComponent]
 })
 export class MainModule {
 }

@@ -6,6 +6,7 @@ import {MdDialog} from '@angular/material';
 import {NameChangingComponent} from '../../../modals/name-changing/name-changing.component';
 import {DayChangingComponent} from '../../../modals/day-changing/day-changing.component';
 import {HelperService} from "../../../../../services/helper.service";
+import {TotalOrdersComponent} from "../../../modals/total-orders/total-orders.component";
 
 @Component({
   selector: 'menu-items',
