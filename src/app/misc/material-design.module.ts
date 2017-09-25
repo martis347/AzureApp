@@ -8,9 +8,11 @@ import {
   MdSortModule, MdTableModule, MdTabsModule, MdCommonModule
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
+import {CdkTableModule} from '@angular/cdk/table';
 
 const modules: any[] = [
   ReactiveFormsModule,
+  CdkTableModule,
   MdAutocompleteModule,
   MdButtonModule,
   MdButtonToggleModule,
