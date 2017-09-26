@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnDestroy, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {SelectedChipsComponent} from './selected-chips/selected-chips.component';
 import {MdDialog, MdSnackBar} from '@angular/material';
@@ -8,8 +8,9 @@ import {DishesService} from '../../../services/api/dishes.service';
 import {DishType} from '../../../models/DishType.enum';
 import {StorageService} from '../../../services/storage.service';
 import {OrderStateService} from '../../../services/order-state.service';
-import {TotalOrdersComponent} from "../modals/total-orders/total-orders.component";
-import {Utilities} from "../../../misc/utilities";
+import {TotalOrdersComponent} from '../modals/total-orders/total-orders.component' ;
+import {SubscribeService} from 'app/services/subscribe.service';
+import {SubscribeAction} from '../../../models/SubscribeAction';
 
 @Component({
   selector: 'app-content',
@@ -17,7 +18,7 @@ import {Utilities} from "../../../misc/utilities";
   styleUrls: ['content.component.css']
 })
 
-export class ContentComponent {
+export class ContentComponent implements OnDestroy{
   @ViewChild('chips') chips: SelectedChipsComponent;
 
   currentDay: string;
@@ -37,20 +38,30 @@ export class ContentComponent {
     public dialog: MdDialog,
     private providersService: ProvidersService,
     private dishesService: DishesService,
-    private storageService: StorageService)
-  {
+    private storageService: StorageService,
+    private subscribeService: SubscribeService) {
     this.activatedRoute.params.subscribe(params => {
       this.currentDay = moment(params['date']).format('dddd');
       this.updateProviders();
       this.updateCurrentOrder();
       if (this.chips) {
         this.chips.reset();
-        this.selection = {price: 0, items: []};
+        this.selection.price = 0;
+        this.selection.items = [];
       }
       this.canOrder = () => {
         return orderStateService.canOrder(this.currentDay);
       };
     });
+
+    this.subscribeService.Subscribe(SubscribeAction.ON_SUBMIT_ORDER)
+      .subscribe(() => {
+        this.onConfirmClick();
+      }) ;
+  }
+
+  ngOnDestroy() {
+    this.subscribeService.Unsubscribe(SubscribeAction.ON_SUBMIT_ORDER);
   }
 
   private updateProviders() {
@@ -90,11 +101,13 @@ export class ContentComponent {
       });
   }
 
-  onSelectionChange(newSelection){
+  onSelectionChange(newSelection) {
     this.selection = newSelection;
   }
 
-  public onConfirmClick(onDone, onError) {
+  private onConfirmClick() {
+    this.subscribeService.DoAction(SubscribeAction.ON_ORDER_SAVING_START);
+
     const mainDish = this.selection.items.find(i => i.dishType === DishType.Main);
     const sideDish = this.selection.items.find(i => i.dishType === DishType.Side);
     const mainDishObject = mainDish ? {
@@ -128,10 +141,19 @@ export class ContentComponent {
       }
       this.updateCurrentOrder();
       this.chips.reset();
-      this.selection = {price: 0, items: []};
-    }, onError, onDone);
+      this.selection.price = 0;
+      this.selection.items = [];
+    }, this.onError.bind(this), this.onDone.bind(this));
 
     return orderObservable;
+  }
+
+  private onDone() {
+    this.subscribeService.DoAction(SubscribeAction.ON_ORDER_SAVING_END);
+  }
+
+  private onError(error) {
+    this.subscribeService.DoAction(SubscribeAction.ON_ORDER_SAVING_ERROR, {error: error}) ;
   }
 
   onViewTotalOrders() {

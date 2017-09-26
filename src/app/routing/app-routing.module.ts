@@ -21,7 +21,7 @@ const appRoutes: Routes = [
   {path: '', redirectTo: 'lunch/', pathMatch: 'full'},
   {path: '**', redirectTo: 'lunch/', pathMatch: 'full'}
 ];
-@NgModule({
+@NgModule( {
   imports: [
     RouterModule.forRoot(appRoutes),
   ],

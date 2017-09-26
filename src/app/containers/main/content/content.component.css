@@ -31,7 +31,7 @@ h2 {
     margin-left: 40px;
     position: absolute;
     display: inline-block;
-    width: calc(50vw - 70px);
+    width: calc(47vw - 70px);
   }
 
   .items-list.right {
@@ -39,6 +39,6 @@ h2 {
     margin-right: 40px;
     position: absolute;
     display: inline-block;
-    width: calc(50vw - 70px);
+    width: calc(47vw - 70px);
   }
 }
